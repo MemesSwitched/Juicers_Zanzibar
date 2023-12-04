@@ -97,7 +97,14 @@ maxrolls = 3
 # all_data.append(newlist)
 
 
+"""Richard's leaf functions"""
+
+
 def change_turn():
+    """
+    "Player turn tracking," or an increasing-number loop dictating the index for which each player goes.
+    This could be done by just numbers. When run, cannot run again for the same player until looping-through.
+    """
     global current_turn
     global next_turn
     current_turn = current_turn + 1 if current_turn <= len(biglist) - 1 else 1
@@ -109,48 +116,6 @@ change_turn()
 
 
 def game_over():
-    pscores = sorted(biglist, key=lambda x: x[1], reverse=True)  # Sick!
-    announcement = '##### {{{ GAME OVER }}} #####\n'
-    for i in range(len(biglist)):
-        announcement += f'{pscores[0][0]} came 1st with {pscores[0][1]} points!\n' if i == 0 else ''
-        announcement += f'{pscores[1][0]} came in 2nd with {pscores[i][1]}.\n' if i == 1 else ''
-        announcement += f'{pscores[2][0]} came in 3rd with {pscores[i][1]}.\n' if i == 2 else ''
-        announcement += f'{pscores[i][0]} came in {i + 1}th with {pscores[i][1]}.\n' if i > 2 else ''
-    print(announcement)  # pscores is a list of tuple pairs. Fitting for read-only!
-
-
-game_over()
-
-
-
-
-
-"""Richard's leaf functions"""
-
-
-def change_turn():
-    """
-    "Player turn tracking," or an increasing-number loop dictating the index for which each player goes.
-    This could be done by just numbers. When run, cannot run again for the same player until looping-through.
-    """
-    global current_turn
-    global next_turn
-    current_turn = current_turn + 1 if current_turn <= len(current_players) - 1 else 1
-    next_turn = current_turn + 1 if current_turn <= len(current_players) - 1 else 1  # yeah you 100% used chatgpt to
-    # write this lol -Hayden
-    print(f'/// [[ TURN CHANGE ]] ///\nP{current_turn} plays.\nP{next_turn} goes next turn.')
-
-
-change_turn()
-
-current_players = {'P1': 21, 'P2': 57, 'P3': 140, 'P4': 1115, 'P5': 11}  # This can work we'll assume P(x) names.
-
-
-# cpu_count = [1, 2, 3, 4, 5, 6, 7, 8]  # RICHARD: Was recommended first by Orlando, but I'll do this based on a
-# dictionary since that includes more data to work with.
-
-
-def game_over():
     """
     "Winner order," or...yeah.
     Sum-up point totals and order them in a list. Then we print the announcements in output. That's...literally it.
@@ -159,14 +124,13 @@ def game_over():
     # what does that mean -Hayden
     Ignore the fact that it goes over the line length limit. It's compact and works!
     """
-    pscores = sorted(current_players.items(), key=lambda x: x[1], reverse=True)  # Sick!
+    pscores = sorted(biglist, key=lambda x: x[1], reverse=True)  # Sick!
     announcement = '##### {{{ GAME OVER }}} #####\n'
-    for i in range(len(current_players)):
+    for i in range(len(biglist)):
         announcement += f'{pscores[0][0]} came 1st with {pscores[0][1]} points!\n' if i == 0 else ''
         announcement += f'{pscores[1][0]} came in 2nd with {pscores[i][1]}.\n' if i == 1 else ''
         announcement += f'{pscores[2][0]} came in 3rd with {pscores[i][1]}.\n' if i == 2 else ''
         announcement += f'{pscores[i][0]} came in {i + 1}th with {pscores[i][1]}.\n' if i > 2 else ''
-        # 1,000% gpt/bing code richard I know what human code looks like -Hayden
     print(announcement)  # pscores is a list of tuple pairs. Fitting for read-only!
 
 
