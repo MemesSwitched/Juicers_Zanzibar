@@ -88,6 +88,8 @@ print(make_big_list())
 def enter_chips(chips_value):  # Run this after we ENTER the game. Uses set chips value to append.
     for i in range(len(biglist)):  # AND NOW, we begin using biglist for our indexing! yay!
         biglist[i].append(chips_value)
+        biglist[i].append(0)  # This creates a placeholder for points per player in biglist.
+        # TODO: Orlando, from here on out, set biglist[i][2] = (points that round)!
 
     return biglist  # Every time. It's the same list we're working with after establishing names for the start of each!
 
@@ -105,7 +107,7 @@ maxrolls = 3
 # all_data.append(newlist)
 
 
-def change_turn():
+def change_turn_add_points(pointsvalue):
     """
     "Player turn tracking," or an increasing-number loop dictating the index for which each player goes.
     This could be done by just numbers. When run, cannot run again for the same player until looping-through.
@@ -114,10 +116,11 @@ def change_turn():
     global next_turn
     current_turn = current_turn + 1 if current_turn <= len(biglist) - 1 else 1
     next_turn = current_turn + 1 if current_turn <= len(biglist) - 1 else 1
+    biglist[current_turn].append(pointsvalue)  # current_turn can be used as index for biglist! Change default points.
     print(f'/// [[ TURN CHANGE ]] ///\nP{current_turn} plays.\nP{next_turn} goes next turn.')
 
 
-# change_turn()
+# change_turn_add_points(pointsvalue)
 
 
 def game_over():
@@ -187,7 +190,7 @@ def chip_tally():
     if len(cpu_list) < 2:
         print("No friends")
     else:
-        print(f'There are {len(cpu_list)} players\n{enter_names}')
+        print(f'There are {len(cpu_list)} players\n{cpu_list}')
 
     # assuming the scores for everyone from the round are
     # in a list 'cpu_scores' and is respected with stone_count
