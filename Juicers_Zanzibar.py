@@ -138,7 +138,7 @@ def game_over():
     print(announcement)  # pscores is a list of tuple pairs. Fitting for read-only!
 
 
-game_over()
+#game_over()
 
 """Orlando's leaf-oriented functions"""
 
