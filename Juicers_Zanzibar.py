@@ -1298,6 +1298,7 @@ while True:  # literally just makes it an infinite loop
             name = 'Player '
             name += str(player)
             if player > numplayers:
+                pass
                 # go to end of round
             f.setpos(0, 225)
             f.write(name, align='center', font=('arial', 30, 'normal'))
