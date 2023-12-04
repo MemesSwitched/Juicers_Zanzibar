@@ -92,7 +92,7 @@ def enter_chips(chips_value):  # Run this after we ENTER the game. Uses set chip
     return biglist  # Every time. It's the same list we're working with after establishing names for the start of each!
 
 
-#print(enter_chips())
+# print(enter_chips())
 print(enter_chips(24))
 
 # function here maxrolls += 1
@@ -117,7 +117,7 @@ def change_turn():
     print(f'/// [[ TURN CHANGE ]] ///\nP{current_turn} plays.\nP{next_turn} goes next turn.')
 
 
-#change_turn()
+# change_turn()
 
 
 def game_over():
@@ -138,7 +138,7 @@ def game_over():
     print(announcement)  # pscores is a list of tuple pairs. Fitting for read-only!
 
 
-#game_over()
+# game_over()
 
 """Orlando's leaf-oriented functions"""
 
@@ -378,6 +378,7 @@ def startchips():
 
 
 def rules():  # here is the function to pull up rules, to look at it type r
+    global e
     e.penup()
     e.begin_fill()
     e.speed(10)
@@ -430,10 +431,18 @@ def rules():  # here is the function to pull up rules, to look at it type r
         align='center', font=('arial', 8, 'normal'))
     e.setpos(0, 130)
     e.write('Rules', align='center', font=('arial', 30, 'normal'))
-    keye = ''
-    while keye != 'r':
-        keye = input('?')
-    e.clear()
+    global keye, current_key, waiting
+    current_key = ""
+    keye = current_key
+    while waiting:
+        keye = current_key
+        if keye != 'r':
+            pass
+        elif keye == "r":
+            keye = current_key
+            e.clear()
+            current_key = ""
+            waiting = False
 
 
 def one():
@@ -921,6 +930,8 @@ def dice():  # You may want to build the game into this
                 f.clear()  # This clears the dice layer
 
 
+# dice  isnt used actually, as  it is modified and implemented into the main keyboard while loop
+
 """The Keyboard input parsing functions!"""
 
 
@@ -1140,7 +1151,7 @@ while True:  # literally just makes it an infinite loop
         else:
             pass
     if gameing:
-        while gameing_setup:
+        while gameing_setup:  # THE main game
             # dice()  yeah this aint gonna happen in epic style just leaver it alone! :(((
             # function and just call the function
             # as soon as player starts the game
@@ -1160,8 +1171,6 @@ while True:  # literally just makes it an infinite loop
                 for i in range(numplayers):
                     chipmenu.append(str(chips))
                 cmenutext = '   '.join(chipmenu)
-                if keyf == 'r':
-                    rules()
                 f.setpos((-32 * numplayers) + 10, -110)
                 f.color('white')
                 f.pendown()
@@ -1279,6 +1288,9 @@ while True:  # literally just makes it an infinite loop
                             else:
                                 # [ass]  ?????
                                 pass
+                    elif keyf == 'r':
+                        while waiting:
+                            rules()
 
 # this code never runs in normal "gameplay", see my paragraph below for more. -Hayden
 while current_key == "up":
