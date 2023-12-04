@@ -299,7 +299,7 @@ def start_window():
     pos = 1
     arrow = ''
     win.bgcolor('light goldenrod yellow')
-    t.speed(10)
+    t.speed(0)
     t.color('black')
     t.begin_fill()
     t.penup()
@@ -339,7 +339,7 @@ def start_window():
     a = t.Turtle()
     a.penup()
     a.ht()
-    a.speed(10)
+    a.speed(0)
     a.setpos(-87, -58)
 
 
@@ -382,7 +382,7 @@ def rules():  # here is the function to pull up rules, to look at it type r
     global e
     e.penup()
     e.begin_fill()
-    e.speed(10)
+    e.speed(0)
     e.setpos(-225, -225)
     e.pendown()
     e.setpos(225, -225)
@@ -447,7 +447,7 @@ def rules():  # here is the function to pull up rules, to look at it type r
 
 
 def one():
-    f.speed(10)
+    f.speed(0)
     # f.ht()
     f.color('white')
     f.begin_fill()
@@ -483,7 +483,7 @@ def one():
 
 
 def two():
-    f.speed(10)
+    f.speed(0)
     # f.ht()
     f.color('white')
     f.begin_fill()
@@ -527,7 +527,7 @@ def two():
 
 
 def three():
-    f.speed(10)
+    f.speed(0)
     # f.ht()
     f.color('white')
     f.begin_fill()
@@ -580,7 +580,7 @@ def three():
 
 
 def four():
-    f.speed(10)
+    f.speed(0)
     # f.ht()
     f.color('white')
     f.begin_fill()
@@ -645,7 +645,7 @@ def four():
 
 
 def five():
-    f.speed(10)
+    f.speed(0)
     # f.ht()
     f.color('white')
     f.begin_fill()
@@ -716,7 +716,7 @@ def five():
 
 
 def six():
-    f.speed(10)
+    f.speed(0)
     # f.ht()
     f.color('white')
     f.begin_fill()
@@ -1034,7 +1034,7 @@ while True:  # literally just makes it an infinite loop
         while settings == 0:
             win = t.Screen()
             win.bgcolor('light goldenrod yellow')
-            t.speed(10)
+            t.speed(0)
             t.ht()
             t.penup()
             numplayers = 2
