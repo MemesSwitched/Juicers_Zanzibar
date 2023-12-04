@@ -85,8 +85,6 @@ def make_big_list():  # This makes the big list we will use and keep using throu
     return biglist
 
 
-make_big_list()
-
 
 # print(make_big_list())
 
@@ -1269,7 +1267,6 @@ while True:  # literally just makes it an infinite loop
                     f.setpos(0, 62)
                     f.write('press n to keep roll or f to roll again', align='center', font=('arial', 12, 'normal'))
                     # ^^^ replace this with whichever keyboard input will be used to continue
-                    rolls += 1
                     current_key = ""
                     keyf = current_key
                     while waiting:
@@ -1281,6 +1278,7 @@ while True:  # literally just makes it an infinite loop
                             max_rolls = rolls  # should be keeping track of this as the max rolls.
                             gameing_setup = False  # this will make it exit the round 1 turn 1 loop.
                             rest_of_turn = True
+                            rolls = 1
                         if keyf == 'f':
                             rolls += 1
                             f.clear()
@@ -1299,6 +1297,8 @@ while True:  # literally just makes it an infinite loop
             player += 1
             name = 'Player '
             name += str(player)
+            if player > numplayers:
+                # go to end of round
             f.setpos(0, 225)
             f.write(name, align='center', font=('arial', 30, 'normal'))
             g.setpos(0, -225)
@@ -1367,7 +1367,7 @@ while True:  # literally just makes it an infinite loop
                 f.setpos(0, 45)
                 f.write(('Roll', rolls), align='center', font=('arial', 10, 'normal'))
                 keyf = current_key
-                if keyf == "f":  # This while loop is to break whenever all players turns have passed
+                if keyf == "f":
                     keyf = dicerolls(3)
                     f.setpos(-225, 100)
                     if keyf[0] == '1':
@@ -1411,7 +1411,6 @@ while True:  # literally just makes it an infinite loop
                     f.setpos(0, 62)
                     f.write('press n to keep roll or f to roll again', align='center', font=('arial', 12, 'normal'))
                     # ^^^ replace this with whichever keyboard input will be used to continue
-                    rolls += 1
                     current_key = ""
                     keyf = current_key
                     print(max_rolls)
