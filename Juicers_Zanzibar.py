@@ -64,15 +64,11 @@ first_run = True
 gameing = False
 gameing_setup = False
 waiting = True
-<<<<<<< HEAD
 rolls = 1
 haswon = False
-
-=======
-rolls = 0
 rest_of_turn = False  # the loop for when its not the first turn of the round
 chipmenu = []  # list of chips for each player by index
->>>>>>> 5e27aa9f78800b1558527fce953b3a1dfefe4776
+
 '''### NO MORE THAN 10-LINE FUNCTIONS! ###  (not a hard rule, 
 but an important guideline for leaves. -Hayden)'''
 
@@ -1278,30 +1274,6 @@ while True:  # literally just makes it an infinite loop
                     keyf = current_key
                     while waiting:
                         keyf = current_key
-<<<<<<< HEAD
-                        while waiting:
-                            keyf = current_key
-                            if keyf == 'n':  # ends current players turn
-                                # f.shape('dice1')
-                                f.clear()  # This clears the dice layer
-                                waiting = False
-                                rolls = 1
-                            if keyf == 'f':
-                                rolls += 1
-                                f.clear()
-                                waiting = False
-                            else:
-                                # [ass]  ?????
-                                pass
-                    elif keyf == 'r':
-                        while waiting:
-                            rules()
-# this code is used to display whoever wins
-
-f.clear()
-t.setpos(0,0)
-t.write(('Player', player 'wins!'), align='center', font=('arial', 40, 'normal'))
-=======
                         if keyf == 'n':  # ends current players turn
                             # f.shape('dice1')
                             f.clear()  # This clears the dice layer
@@ -1463,7 +1435,12 @@ t.write(('Player', player 'wins!'), align='center', font=('arial', 40, 'normal')
                 elif keyf == 'r':
                     while waiting:
                         rules()
->>>>>>> 5e27aa9f78800b1558527fce953b3a1dfefe4776
+
+# this code is used to display whoever wins
+
+f.clear()
+t.setpos(0,0)
+t.write(('Player', player, 'wins!'), align='center', font=('arial', 40, 'normal'))
 
 # this code never runs in normal "gameplay", see my paragraph below for more. -Hayden
 while current_key == "up":
