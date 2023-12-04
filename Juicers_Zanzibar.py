@@ -1268,6 +1268,8 @@ while True:  # literally just makes it an infinite loop
                                 rolls = 1
                             if keyf == 'f':
                                 rolls += 1
+                                f.clear()
+                                waiting = False
                             else:
                                 # [ass]  ?????
                                 pass
