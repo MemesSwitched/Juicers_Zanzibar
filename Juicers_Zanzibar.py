@@ -92,7 +92,7 @@ def enter_chips(chips_value):  # Run this after we ENTER the game. Uses set chip
     return biglist  # Every time. It's the same list we're working with after establishing names for the start of each!
 
 
-print(enter_chips())
+print(enter_chips(24))
 
 # function here maxrolls += 1
 maxrolls = 3
