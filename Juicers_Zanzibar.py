@@ -1158,7 +1158,7 @@ while True:  # literally just makes it an infinite loop
             # dice()  yeah this aint gonna happen in epic style just leaver it alone! :(((
             # function and just call the function
             # as soon as player starts the game
-            player = 0  # This is just a placeholder for the real player counter
+            player = 1  # This is just a placeholder for the real player counter
             name = 'Player '
             name += str(player)
             f.setpos(0, 225)
