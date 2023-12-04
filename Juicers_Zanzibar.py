@@ -80,11 +80,6 @@ def make_big_list():  # This makes the big list we will use and keep using throu
     cpu_list = enter_names.split()
     for i in range(len(cpu_list)):
         biglist.append([cpu_list[i]])
-<<<<<<< Updated upstream
-    print(biglist)
-
-=======
->>>>>>> Stashed changes
     return biglist
 
 
