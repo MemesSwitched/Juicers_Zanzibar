@@ -55,13 +55,13 @@ rolls = 1
 '''### NO MORE THAN 10-LINE FUNCTIONS! ###  (not a hard rule, 
 but an important guideline for leaves. -Hayden)'''
 
-
-
 """Richard's leaf functions"""
 
 '''##########NEW#########'''
 #####
 biglist = []
+
+
 # Empty for now! Will be referenced in a series of functions, which each do their part to it.
 #
 
@@ -90,11 +90,11 @@ def enter_chips():  # Run this after we enter the game.
 
 print(enter_chips())
 
-
-
 # function here maxrolls += 1
 maxrolls = 3
-#all_data = [["hayden", 20, 135]]
+
+
+# all_data = [["hayden", 20, 135]]
 # function thing
 # newlist = [data1, data2, data3]
 # all_data.append(newlist)
@@ -1282,5 +1282,3 @@ while current_key == "up":
     just a 0.4 sec break BEFORE the other functions run. this could also mean
     that any keyboard listens wont run while the code is executing, OR it 
     means that everything will just be delayed by 0.4 seconds who knows."""
-
-
