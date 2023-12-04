@@ -93,6 +93,7 @@ def enter_chips(chips_value):  # Run this after we ENTER the game. Uses set chip
 
 
 #print(enter_chips())
+print(enter_chips(24))
 
 # function here maxrolls += 1
 maxrolls = 3
@@ -1199,14 +1200,14 @@ while True:  # literally just makes it an infinite loop
                 f.write('Chips', align='center', font=('arial', 30, 'normal'))
                 f.setpos((-25 * numplayers), -150)
                 f.color('black')
-                for i in range(len(chipmenu)):  # I would recommend to use a list with the chip values
+                for i in range(numplayers):  # I would recommend to use a list with the chip values
                     # to show the scores in game, as you could just edit chips below
                     # to be chips[i]
                     f.write(chips, align='left', font=('arial', 30, 'normal'))
                     f.fd(50)
                 f.setpos((-25 * numplayers), -115)
                 num = 1
-                for i in range(len(chipmenu)):  # I would recommend to use a list with the chip values
+                for i in range(numplayers):  # I would recommend to use a list with the chip values
                     # to show the scores in game, as you could just edit chips below
                     # to be chips[i]
                     f.write(num, align='left', font=('arial', 30, 'normal'))
@@ -1272,6 +1273,8 @@ while True:  # literally just makes it an infinite loop
                                 rolls = 1
                             if keyf == 'f':
                                 rolls += 1
+                                f.clear()
+                                waiting = False
                             else:
                                 # [ass]  ?????
                                 pass
