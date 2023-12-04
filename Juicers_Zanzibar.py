@@ -1088,10 +1088,7 @@ while True:  # literally just makes it an infinite loop
             chips += 5
             startchips()
         elif current_key == "enter" and pos == 3:  # moves on to the game window
-<<<<<<< Updated upstream
-=======
             enter_chips(chips)  # Richard: PLEASE PLEASE PLEASE WORK!
->>>>>>> Stashed changes
             a.clear()
             c.clear()
             d.clear()
