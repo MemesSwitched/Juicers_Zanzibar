@@ -114,9 +114,9 @@ def change_turn_add_points(pointsvalue):
     """
     global current_turn
     global next_turn
+    biglist[current_turn][2] = pointsvalue  # current_turn can be used as index for biglist! Change default points.
     current_turn = current_turn + 1 if current_turn <= len(biglist) - 1 else 1
     next_turn = current_turn + 1 if current_turn <= len(biglist) - 1 else 1
-    biglist[current_turn][2] = pointsvalue  # current_turn can be used as index for biglist! Change default points.
     print(f'/// [[ TURN CHANGE ]] ///\nP{current_turn} plays.\nP{next_turn} goes next turn.')
 
 
