@@ -54,10 +54,78 @@ waiting = True
 '''### NO MORE THAN 10-LINE FUNCTIONS! ###  (not a hard rule, 
 but an important guideline for leaves. -Hayden)'''
 
-# ??? "Non-specific point scoring," or what number combos (in specific orders!) score higher than others.
-# I believe this will draw from the list provided, then we compute the extras tacked-on (by point-total).
+'''##########NEW#########'''
+#####
+biglist = []
+# Empty for now! Will be referenced in a series of functions, which each do their part to it.
+#
+global startchipvalue
+global rolllimit
 
-current_players = {'P1': 21, 'P2': 57, 'P3': 140, 'P4': 1115, 'P5': 11}  # This can work we'll assume P(x) names.
+
+def make_big_list():
+    enter_names = str(input('Enter player names (each followed by a space):\n'))
+    cpu_list = enter_names.split()
+    for i in range(len(cpu_list)):
+        biglist.append([cpu_list[i]])
+
+    return biglist
+
+
+print(make_big_list())
+
+chipslimit = 0  # Placeholder. Will change before entering the game, and never again after. It's set.
+
+
+# My boy RubenSim did nothing wrong #unbanhimfromroblox
+
+def enter_chips():  # Run this after we enter the game.
+    chips = int(input('Enter how many chips each player will have:\n'))
+    for i in range(len(biglist)):  # AND NOW, we begin using biglist for our indexing! yay!
+        biglist[i].append(chips)
+
+    return biglist  # Every time. It's the same list we're working with after establishing names for the start of each!
+
+
+print(enter_chips())
+
+
+
+# function here maxrolls += 1
+maxrolls = 3
+#all_data = [["hayden", 20, 135]]
+# function thing
+# newlist = [data1, data2, data3]
+# all_data.append(newlist)
+
+
+def change_turn():
+    global current_turn
+    global next_turn
+    current_turn = current_turn + 1 if current_turn <= len(biglist) - 1 else 1
+    next_turn = current_turn + 1 if current_turn <= len(biglist) - 1 else 1
+    print(f'/// [[ TURN CHANGE ]] ///\nP{current_turn} plays.\nP{next_turn} goes next turn.')
+
+
+change_turn()
+
+
+def game_over():
+    pscores = sorted(biglist, key=lambda x: x[1], reverse=True)  # Sick!
+    announcement = '##### {{{ GAME OVER }}} #####\n'
+    for i in range(len(biglist)):
+        announcement += f'{pscores[0][0]} came 1st with {pscores[0][1]} points!\n' if i == 0 else ''
+        announcement += f'{pscores[1][0]} came in 2nd with {pscores[i][1]}.\n' if i == 1 else ''
+        announcement += f'{pscores[2][0]} came in 3rd with {pscores[i][1]}.\n' if i == 2 else ''
+        announcement += f'{pscores[i][0]} came in {i + 1}th with {pscores[i][1]}.\n' if i > 2 else ''
+    print(announcement)  # pscores is a list of tuple pairs. Fitting for read-only!
+
+
+game_over()
+
+
+
+
 
 """Richard's leaf functions"""
 
@@ -1247,3 +1315,5 @@ while current_key == "up":
     just a 0.4 sec break BEFORE the other functions run. this could also mean
     that any keyboard listens wont run while the code is executing, OR it 
     means that everything will just be delayed by 0.4 seconds who knows."""
+
+
