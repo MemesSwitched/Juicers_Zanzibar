@@ -1128,6 +1128,8 @@ while True:  # literally just makes it an infinite loop
             gameing_setup = True
             check += 1
             cpu_list = make_big_list()  # Richard: Since names were entered before, this should work.
+            enter_chips((chips))
+            print(biglist)
             mouse(0, 0)
         elif arrow == 'f' and pos == 3:
             a.clear()
