@@ -1279,6 +1279,7 @@ while True:  # literally just makes it an infinite loop
                             gameing_setup = False  # this will make it exit the round 1 turn 1 loop.
                             rest_of_turn = True
                             rolls = 1
+                            player += 1
                         if keyf == 'f':
                             rolls += 1
                             f.clear()
@@ -1294,7 +1295,6 @@ while True:  # literally just makes it an infinite loop
             # dice()  yeah this aint gonna happen in epic style just leaver it alone! :(((
             # function and just call the function
             # as soon as player starts the game
-            player += 1
             name = 'Player '
             name += str(player)
             if player > numplayers:
@@ -1424,7 +1424,9 @@ while True:  # literally just makes it an infinite loop
                             # max_rolls = rolls  # should be keeping track of this as the max rolls.
                             # gameing_setup = False  # this will make it exit the round 1 turn 1 loop.
                             # rest_of_turn = True
-                        if keyf == 'f' and rolls <= max_rolls:
+                            rolls = 1
+                            player += 1
+                        if keyf == 'f' and rolls <= (max_rolls - 1):
                             rolls += 1
                             f.clear()
                             waiting = False
