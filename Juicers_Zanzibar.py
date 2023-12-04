@@ -1262,6 +1262,7 @@ while True:  # literally just makes it an infinite loop
                         f.setpos(0, 55)
                         f.write('press n to keep roll or f to roll again', align='center', font=('arial', 12, 'normal'))
                         # ^^^ replace this with whichever keyboard input will be used to continue
+                        current_key = ""
                         keyf = current_key
                         while waiting:
                             keyf = current_key
