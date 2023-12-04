@@ -15,6 +15,7 @@
 """currently, math isn't called so im keeping it unimported for efficiency"""
 from random import randint
 from time import sleep
+
 from pynput import keyboard
 
 """/// Hayden's Global Variables ///"""
@@ -63,8 +64,9 @@ first_run = True
 gameing = False
 gameing_setup = False
 waiting = True
-rolls = 1
-
+rolls = 0
+rest_of_turn = False  # the loop for when its not the first turn of the round
+chipmenu = []  # list of chips for each player by index
 '''### NO MORE THAN 10-LINE FUNCTIONS! ###  (not a hard rule, 
 but an important guideline for leaves. -Hayden)'''
 
@@ -90,6 +92,7 @@ make_big_list()
 
 
 def enter_chips(chips_value):  # Run this after we ENTER the game. Uses set chips value to append.
+    global biglist  # dude its gonna crash if we dont do this -hayden
     for i in range(len(biglist)):  # AND NOW, we begin using biglist for our indexing! yay!
         biglist[i].append(chips_value)
         biglist[i].append(0)  # This creates a placeholder for points per player in biglist.
@@ -174,8 +177,6 @@ def dice_to_points(x):
 dice_to_points(["1", "1", "1"])
 # i'd assume that we're going to make score append/set a dictionary to keep track of
 # each player/cpu's scores - hayden
-
-from matplotlib import pyplot as mlt  # idk what orlando did here but im not touching
 
 #  it incase something breaks -hayden
 
@@ -798,9 +799,6 @@ def six():
     f.rt(90)
 
 
-chipmenu = []
-
-
 def dice():  # You may want to build the game into this
     # function and just call the function
     # as soon as player starts the game
@@ -1155,7 +1153,7 @@ while True:  # literally just makes it an infinite loop
             # dice()  yeah this aint gonna happen in epic style just leaver it alone! :(((
             # function and just call the function
             # as soon as player starts the game
-            player = 0  # This is just a placeholder for the real player counter
+            player = 1  # This is just a placeholder for the real player counter
             name = 'Player '
             name += str(player)
             f.setpos(0, 225)
@@ -1163,134 +1161,279 @@ while True:  # literally just makes it an infinite loop
             g.setpos(0, -225)
             g.write('Input "r" for rules or "f" to roll', align='center', font=('arial', 12, 'normal'))
             keyf = current_key
-            while keyf != 'x':  # Use x to break of the loop
-                # you can change keyf != 'x' to something checking that no score == 0
-                # keyf is just a placeholder for the real dice system but whatever value is rolled,
-                # call the function to draw the corresponding dice and after 3 are drawn press a button
-                # to clear and restart
-                for i in range(numplayers):
-                    chipmenu.append(str(chips))
-                cmenutext = '   '.join(chipmenu)
-                f.setpos((-32 * numplayers) + 10, -110)
-                f.color('white')
-                f.pendown()
-                f.begin_fill()
-                f.fd((50 * numplayers) + 25)
-                f.rt(90)
-                f.fd(35)
-                f.rt(90)
-                f.fd((50 * numplayers) + 25)
-                f.rt(90)
-                f.fd(70)
-                f.rt(90)
-                f.fd((50 * numplayers) + 25)
-                f.rt(90)
-                f.fd(35)
-                f.lt(90)
-                f.end_fill()
-                f.penup()
-                f.setpos((-32 * numplayers) + 10, -110)
-                f.color('black')
-                f.pendown()
-                f.fd((50 * numplayers) + 25)
-                f.rt(90)
-                f.fd(35)
-                f.rt(90)
-                f.fd((50 * numplayers) + 25)
-                f.rt(90)
-                f.fd(70)
-                f.rt(90)
-                f.fd((50 * numplayers) + 25)
-                f.rt(90)
-                f.fd(35)
-                f.lt(90)
-                f.penup()
-                f.setpos(0, -10)
-                f.write('Chips', align='center', font=('arial', 30, 'normal'))
-                f.setpos((-25 * numplayers), -150)
-                f.color('black')
-                for i in range(numplayers):  # I would recommend to use a list with the chip values
-                    # to show the scores in game, as you could just edit chips below
-                    # to be chips[i]
-                    f.write(chips, align='left', font=('arial', 30, 'normal'))
-                    f.fd(50)
-                f.setpos((-25 * numplayers), -115)
-                num = 1
-                for i in range(numplayers):  # I would recommend to use a list with the chip values
-                    # to show the scores in game, as you could just edit chips below
-                    # to be chips[i]
-                    f.write(num, align='left', font=('arial', 30, 'normal'))
-                    f.fd(50)
-                    num += 1
-                waiting = True
-                while waiting:
-                    f.setpos(0, 45)
-                    f.write(('Roll', rolls), align='center', font=('arial', 10, 'normal'))
+            # you can change keyf != 'x' to something checking that no score == 0
+            # keyf is just a placeholder for the real dice system but whatever value is rolled,
+            # call the function to draw the corresponding dice and after 3 are drawn press a button
+            # to clear and restart
+            for i in range(numplayers):
+                chipmenu.append(str(chips))
+            cmenutext = '   '.join(chipmenu)
+            f.setpos((-32 * numplayers) + 10, -110)
+            f.color('white')
+            f.pendown()
+            f.begin_fill()
+            f.fd((50 * numplayers) + 25)
+            f.rt(90)
+            f.fd(35)
+            f.rt(90)
+            f.fd((50 * numplayers) + 25)
+            f.rt(90)
+            f.fd(70)
+            f.rt(90)
+            f.fd((50 * numplayers) + 25)
+            f.rt(90)
+            f.fd(35)
+            f.lt(90)
+            f.end_fill()
+            f.penup()
+            f.setpos((-32 * numplayers) + 10, -110)
+            f.color('black')
+            f.pendown()
+            f.fd((50 * numplayers) + 25)
+            f.rt(90)
+            f.fd(35)
+            f.rt(90)
+            f.fd((50 * numplayers) + 25)
+            f.rt(90)
+            f.fd(70)
+            f.rt(90)
+            f.fd((50 * numplayers) + 25)
+            f.rt(90)
+            f.fd(35)
+            f.lt(90)
+            f.penup()
+            f.setpos(0, -10)
+            f.write('Chips', align='center', font=('arial', 30, 'normal'))
+            f.setpos((-25 * numplayers), -150)
+            f.color('black')
+            for i in range(numplayers):  # I would recommend to use a list with the chip values
+                # to show the scores in game, as you could just edit chips below
+                # to be chips[i]
+                f.write(chips, align='left', font=('arial', 30, 'normal'))
+                f.fd(50)
+            f.setpos((-25 * numplayers), -115)
+            num = 1
+            for i in range(numplayers):  # I would recommend to use a list with the chip values
+                # to show the scores in game, as you could just edit chips below
+                # to be chips[i]
+                f.write(num, align='left', font=('arial', 30, 'normal'))
+                f.fd(50)
+                num += 1
+            waiting = True
+            while waiting:  # this is done so that when the dice are rolled, it waits for the loop to end
+                f.setpos(0, 45)
+                f.write(('Roll', rolls), align='center', font=('arial', 10, 'normal'))
+                keyf = current_key
+                if keyf == "f":  # This while loop is to break whenever all players turns have passed
+                    keyf = dicerolls(3)
+                    f.setpos(-225, 100)
+                    if keyf[0] == '1':
+                        one()
+                    elif keyf[0] == '2':
+                        two()
+                    elif keyf[0] == '3':
+                        three()
+                    elif keyf[0] == '4':
+                        four()
+                    elif keyf[0] == '5':
+                        five()
+                    elif keyf[0] == '6':
+                        six()
+                    f.setpos(-50, 100)
+                    if keyf[1] == '1':
+                        one()
+                    elif keyf[1] == '2':
+                        two()
+                    elif keyf[1] == '3':
+                        three()
+                    elif keyf[1] == '4':
+                        four()
+                    elif keyf[1] == '5':
+                        five()
+                    elif keyf[1] == '6':
+                        six()
+                    f.setpos(125, 100)
+                    if keyf[2] == '1':
+                        one()
+                    elif keyf[2] == '2':
+                        two()
+                    elif keyf[2] == '3':
+                        three()
+                    elif keyf[2] == '4':
+                        four()
+                    elif keyf[2] == '5':
+                        five()
+                    elif keyf[2] == '6':
+                        six()
+                    f.setpos(0, 62)
+                    f.write('press n to keep roll or f to roll again', align='center', font=('arial', 12, 'normal'))
+                    # ^^^ replace this with whichever keyboard input will be used to continue
+                    rolls += 1
+                    current_key = ""
                     keyf = current_key
-                    if keyf == "f":  # This while loop is to break whenever all players turns have passed
-                        keyf = dicerolls(3)
-                        f.setpos(-225, 100)
-                        if keyf[0] == '1':
-                            one()
-                        elif keyf[0] == '2':
-                            two()
-                        elif keyf[0] == '3':
-                            three()
-                        elif keyf[0] == '4':
-                            four()
-                        elif keyf[0] == '5':
-                            five()
-                        elif keyf[0] == '6':
-                            six()
-                        f.setpos(-50, 100)
-                        if keyf[1] == '1':
-                            one()
-                        elif keyf[1] == '2':
-                            two()
-                        elif keyf[1] == '3':
-                            three()
-                        elif keyf[1] == '4':
-                            four()
-                        elif keyf[1] == '5':
-                            five()
-                        elif keyf[1] == '6':
-                            six()
-                        f.setpos(125, 100)
-                        if keyf[2] == '1':
-                            one()
-                        elif keyf[2] == '2':
-                            two()
-                        elif keyf[2] == '3':
-                            three()
-                        elif keyf[2] == '4':
-                            four()
-                        elif keyf[2] == '5':
-                            five()
-                        elif keyf[2] == '6':
-                            six()
-                        player += 1  # This is a makeshift turn system, please remove it when making final code
-                        f.setpos(0, 55)
-                        f.write('press n to keep roll or f to roll again', align='center', font=('arial', 12, 'normal'))
-                        # ^^^ replace this with whichever keyboard input will be used to continue
-                        current_key = ""
+                    while waiting:
                         keyf = current_key
-                        while waiting:
-                            keyf = current_key
-                            if keyf == 'n':  # ends current players turn
-                                # f.shape('dice1')
-                                f.clear()  # This clears the dice layer
-                                waiting = False
-                                rolls = 1
-                            if keyf == 'f':
-                                rolls += 1
-                                f.clear()
-                                waiting = False
-                            else:
-                                # [ass]  ?????
-                                pass
-                    elif keyf == 'r':
-                        while waiting:
-                            rules()
+                        if keyf == 'n':  # ends current players turn
+                            # f.shape('dice1')
+                            f.clear()  # This clears the dice layer
+                            waiting = False
+                            max_rolls = rolls  # should be keeping track of this as the max rolls.
+                            gameing_setup = False  # this will make it exit the round 1 turn 1 loop.
+                            rest_of_turn = True
+                        if keyf == 'f':
+                            rolls += 1
+                            f.clear()
+                            waiting = False
+                        else:
+                            # [ass]  ?????
+                            """ ^ the most important line in the script"""
+                            pass
+                elif keyf == 'r':
+                    while waiting:
+                        rules()
+        while rest_of_turn:
+            # dice()  yeah this aint gonna happen in epic style just leaver it alone! :(((
+            # function and just call the function
+            # as soon as player starts the game
+            player += 1
+            name = 'Player '
+            name += str(player)
+            f.setpos(0, 225)
+            f.write(name, align='center', font=('arial', 30, 'normal'))
+            g.setpos(0, -225)
+            g.write('Input "r" for rules or "f" to roll', align='center', font=('arial', 12, 'normal'))
+            keyf = current_key
+            # you can change keyf != 'x' to something checking that no score == 0
+            # keyf is just a placeholder for the real dice system but whatever value is rolled,
+            # call the function to draw the corresponding dice and after 3 are drawn press a button
+            # to clear and restart
+            for i in range(numplayers):
+                chipmenu.append(str(chips))
+            cmenutext = '   '.join(chipmenu)
+            f.setpos((-32 * numplayers) + 10, -110)
+            f.color('white')
+            f.pendown()
+            f.begin_fill()
+            f.fd((50 * numplayers) + 25)
+            f.rt(90)
+            f.fd(35)
+            f.rt(90)
+            f.fd((50 * numplayers) + 25)
+            f.rt(90)
+            f.fd(70)
+            f.rt(90)
+            f.fd((50 * numplayers) + 25)
+            f.rt(90)
+            f.fd(35)
+            f.lt(90)
+            f.end_fill()
+            f.penup()
+            f.setpos((-32 * numplayers) + 10, -110)
+            f.color('black')
+            f.pendown()
+            f.fd((50 * numplayers) + 25)
+            f.rt(90)
+            f.fd(35)
+            f.rt(90)
+            f.fd((50 * numplayers) + 25)
+            f.rt(90)
+            f.fd(70)
+            f.rt(90)
+            f.fd((50 * numplayers) + 25)
+            f.rt(90)
+            f.fd(35)
+            f.lt(90)
+            f.penup()
+            f.setpos(0, -10)
+            f.write('Chips', align='center', font=('arial', 30, 'normal'))
+            f.setpos((-25 * numplayers), -150)
+            f.color('black')
+            for i in range(numplayers):  # I would recommend to use a list with the chip values
+                # to show the scores in game, as you could just edit chips below
+                # to be chips[i]
+                f.write(chips, align='left', font=('arial', 30, 'normal'))
+                f.fd(50)
+            f.setpos((-25 * numplayers), -115)
+            num = 1
+            for i in range(numplayers):  # I would recommend to use a list with the chip values
+                # to show the scores in game, as you could just edit chips below
+                # to be chips[i]
+                f.write((i + 1), align='left', font=('arial', 30, 'normal'))
+                f.fd(50)
+                num += 1
+            waiting = True
+            while waiting:  # this is done so that when the dice are rolled, it waits for the loop to end
+                f.setpos(0, 45)
+                f.write(('Roll', rolls), align='center', font=('arial', 10, 'normal'))
+                keyf = current_key
+                if keyf == "f":  # This while loop is to break whenever all players turns have passed
+                    keyf = dicerolls(3)
+                    f.setpos(-225, 100)
+                    if keyf[0] == '1':
+                        one()
+                    elif keyf[0] == '2':
+                        two()
+                    elif keyf[0] == '3':
+                        three()
+                    elif keyf[0] == '4':
+                        four()
+                    elif keyf[0] == '5':
+                        five()
+                    elif keyf[0] == '6':
+                        six()
+                    f.setpos(-50, 100)
+                    if keyf[1] == '1':
+                        one()
+                    elif keyf[1] == '2':
+                        two()
+                    elif keyf[1] == '3':
+                        three()
+                    elif keyf[1] == '4':
+                        four()
+                    elif keyf[1] == '5':
+                        five()
+                    elif keyf[1] == '6':
+                        six()
+                    f.setpos(125, 100)
+                    if keyf[2] == '1':
+                        one()
+                    elif keyf[2] == '2':
+                        two()
+                    elif keyf[2] == '3':
+                        three()
+                    elif keyf[2] == '4':
+                        four()
+                    elif keyf[2] == '5':
+                        five()
+                    elif keyf[2] == '6':
+                        six()
+                    f.setpos(0, 62)
+                    f.write('press n to keep roll or f to roll again', align='center', font=('arial', 12, 'normal'))
+                    # ^^^ replace this with whichever keyboard input will be used to continue
+                    rolls += 1
+                    current_key = ""
+                    keyf = current_key
+                    print(max_rolls)
+                    while waiting:
+                        keyf = current_key
+                        if keyf == 'n':  # ends current players turn
+                            # f.shape('dice1')
+                            f.clear()  # This clears the dice layer
+                            waiting = False
+                            # max_rolls = rolls  # should be keeping track of this as the max rolls.
+                            # gameing_setup = False  # this will make it exit the round 1 turn 1 loop.
+                            # rest_of_turn = True
+                        if keyf == 'f' and rolls <= max_rolls:
+                            rolls += 1
+                            f.clear()
+                            waiting = False
+                        else:
+                            # [ass]  ?????
+                            """ ^ the most important line in the script"""
+                            pass
+                elif keyf == 'r':
+                    while waiting:
+                        rules()
 
 # this code never runs in normal "gameplay", see my paragraph below for more. -Hayden
 while current_key == "up":
