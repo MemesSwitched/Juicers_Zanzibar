@@ -126,7 +126,6 @@ def game_over():
     Very compact!! No loop!! Sorts players and their values in pairs of tuples within a list. I am so freaking proud.
     TODO: Remember to include marker to end all other function loops.
     # what does that mean -Hayden
-    Ignore the fact that it goes over the line length limit. It's compact and works!
     """
     pscores = sorted(biglist, key=lambda x: x[1], reverse=True)  # Sick!
     announcement = '##### {{{ GAME OVER }}} #####\n'
