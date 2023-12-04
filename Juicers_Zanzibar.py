@@ -21,6 +21,7 @@ from pynput import keyboard
 """/// Hayden's Global Variables ///"""
 ph = "Placeholder, yeah!"  # used generally for unfinished results in functions
 winner = []  # used in tiebreaker
+debugging = True  # change this to enable some wacky print statements and such
 ###
 """"keyboard input related global variables"""
 key_pressed = set()  # the current key being pressed down, globally as a truly blank variable
@@ -947,7 +948,8 @@ def on_press(key):
             # here i would do the thing depending on the key lol
             current_key = k
             key_pressed.add(key)
-            print(current_key)
+            if debugging:
+                print(current_key)
             # print("pressed {}".format(key))
         else:
             pass
