@@ -64,6 +64,7 @@ gameing = False
 gameing_setup = False
 waiting = True
 rolls = 1
+haswon = False
 
 '''### NO MORE THAN 10-LINE FUNCTIONS! ###  (not a hard rule, 
 but an important guideline for leaves. -Hayden)'''
@@ -1294,6 +1295,11 @@ while True:  # literally just makes it an infinite loop
                     elif keyf == 'r':
                         while waiting:
                             rules()
+# this code is used to display whoever wins
+
+f.clear()
+t.setpos(0,0)
+t.write(('Player', player 'wins!'), align='center', font=('arial', 40, 'normal'))
 
 # this code never runs in normal "gameplay", see my paragraph below for more. -Hayden
 while current_key == "up":
