@@ -79,15 +79,17 @@ but an important guideline for leaves. -Hayden)'''
 
 
 def make_big_list():  # This makes the big list we will use and keep using throughout the while script!
+    global biglist
     enter_names = str(input('Enter player names (each followed by a space):\n'))
     cpu_list = enter_names.split()
     for i in range(len(cpu_list)):
         biglist.append([cpu_list[i]])
+    print(biglist)
     return biglist
 
 
 
-# print(make_big_list())
+#make_big_list()
 
 
 def enter_chips(chips_value):  # Run this after we ENTER the game. Uses set chips value to append.
@@ -1130,7 +1132,7 @@ while True:  # literally just makes it an infinite loop
             gameing_setup = True
             check += 1
             cpu_list = make_big_list()  # Richard: Since names were entered before, this should work.
-            enter_chips((chips))
+            enter_chips(chips)
             print(biglist)
             mouse(0, 0)
         elif arrow == 'f' and pos == 3:
