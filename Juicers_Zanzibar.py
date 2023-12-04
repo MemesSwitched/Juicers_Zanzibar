@@ -1279,7 +1279,7 @@ while True:  # literally just makes it an infinite loop
                         keyf = current_key
                         while waiting:
                             keyf = current_key
-                            if keyf == 'n':
+                            if keyf == 'n':  # ends current players turn
                                 # f.shape('dice1')
                                 f.clear()  # This clears the dice layer
                                 waiting = False
