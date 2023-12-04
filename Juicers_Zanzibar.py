@@ -82,7 +82,7 @@ def make_big_list():  # This makes the big list we will use and keep using throu
     return biglist
 
 
-print(make_big_list())
+#print(make_big_list())
 
 
 def enter_chips(chips_value):  # Run this after we ENTER the game. Uses set chips value to append.
