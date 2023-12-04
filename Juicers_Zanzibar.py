@@ -59,8 +59,6 @@ but an important guideline for leaves. -Hayden)'''
 biglist = []
 # Empty for now! Will be referenced in a series of functions, which each do their part to it.
 #
-global startchipvalue
-global rolllimit
 
 
 def make_big_list():
