@@ -1090,7 +1090,7 @@ while True:  # literally just makes it an infinite loop
         elif arrow == 'right' and pos == 2 and chips < 50:
             chips += 5
             startchips()
-        elif current_key == "enter" and pos == 3:
+        elif current_key == "enter" and pos == 3:  # moves on to the game window
             a.clear()
             c.clear()
             d.clear()
