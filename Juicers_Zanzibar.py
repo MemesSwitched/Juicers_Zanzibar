@@ -50,6 +50,7 @@ first_run = True
 gameing = False
 gameing_setup = False
 waiting = True
+rolls = 1
 
 '''### NO MORE THAN 10-LINE FUNCTIONS! ###  (not a hard rule, 
 but an important guideline for leaves. -Hayden)'''
@@ -945,10 +946,10 @@ def dice():  # You may want to build the game into this
                 six()
             player += 1  # This is a makeshift turn system, please remove it when making final code
             f.setpos(0, 55)
-            f.write('press c to clear dice and try again', align='center', font=('arial', 12, 'normal'))
+            f.write('press r to reroll or n to move on', align='center', font=('arial', 12, 'normal'))
             # ^^^ replace this with whichever keyboard input will be used to continue
-            keyf = str(input('input c to clear dice and try again'))
-            if keyf == 'c':
+            keyf = current_key
+            if keyf == 'n':
                 # f.shape('dice1')
                 f.clear()  # This clears the dice layer
 
@@ -1246,6 +1247,8 @@ while True:  # literally just makes it an infinite loop
                     num += 1
                 waiting = True
                 while waiting:
+                    f.setpos(0, 45)
+                    f.write(('Roll', rolls), align='center', font=('arial', 10, 'normal'))
                     keyf = current_key
                     if keyf == "f":  # This while loop is to break whenever all players turns have passed
                         keyf = dicerolls(3)
@@ -1290,15 +1293,18 @@ while True:  # literally just makes it an infinite loop
                             six()
                         player += 1  # This is a makeshift turn system, please remove it when making final code
                         f.setpos(0, 55)
-                        f.write('press c to clear dice and try again', align='center', font=('arial', 12, 'normal'))
+                        f.write('press n to keep roll or f to roll again', align='center', font=('arial', 12, 'normal'))
                         # ^^^ replace this with whichever keyboard input will be used to continue
                         keyf = current_key
                         while waiting:
                             keyf = current_key
-                            if keyf == 'c':
+                            if keyf == 'n':
                                 # f.shape('dice1')
                                 f.clear()  # This clears the dice layer
                                 waiting = False
+                                rolls = 1
+                            if keyf == 'f':
+                                rolls += 1
                             else:
                                 # [ass]  ?????
                                 pass
