@@ -28,6 +28,19 @@ current_key = ""  # stores the current key as a str for key released (idk why)
 
 
 """/// Richard's Global Variables///"""
+
+############################################
+############################################
+############################################
+biglist = []
+############################################
+############################################
+############################################
+# ITS
+# ALL
+# BIG
+# LIST.
+# Empty for now! Will be referenced in a series of functions, which each do their part to it.
 current_turn = 0  # Keep this at zero. (but why? -Hayden)
 next_turn = 0
 
@@ -55,18 +68,12 @@ rolls = 1
 '''### NO MORE THAN 10-LINE FUNCTIONS! ###  (not a hard rule, 
 but an important guideline for leaves. -Hayden)'''
 
-
-
 """Richard's leaf functions"""
 
 '''##########NEW#########'''
-#####
-biglist = []
-# Empty for now! Will be referenced in a series of functions, which each do their part to it.
-#
 
 
-def make_big_list():
+def make_big_list():  # This makes the big list we will use and keep using throughout the while script!
     enter_names = str(input('Enter player names (each followed by a space):\n'))
     cpu_list = enter_names.split()
     for i in range(len(cpu_list)):
@@ -77,24 +84,21 @@ def make_big_list():
 
 print(make_big_list())
 
-chipslimit = 0  # Placeholder. Will change before entering the game, and never again after. It's set.
 
-
-def enter_chips():  # Run this after we enter the game.
-    chips = int(input('Enter how many chips each player will have:\n'))
+def enter_chips(chips_value):  # Run this after we ENTER the game. Uses set chips value to append.
     for i in range(len(biglist)):  # AND NOW, we begin using biglist for our indexing! yay!
-        biglist[i].append(chips)
+        biglist[i].append(chips_value)
 
     return biglist  # Every time. It's the same list we're working with after establishing names for the start of each!
 
 
 print(enter_chips())
 
-
-
 # function here maxrolls += 1
 maxrolls = 3
-#all_data = [["hayden", 20, 135]]
+
+
+# all_data = [["hayden", 20, 135]]
 # function thing
 # newlist = [data1, data2, data3]
 # all_data.append(newlist)
@@ -175,8 +179,8 @@ from matplotlib import pyplot as mlt  # idk what orlando did here but im not tou
 
 #  it incase something breaks -hayden
 
-enter_names = input('Enter player names (each followed by a space):')
-cpu_list = enter_names.split()
+# enter_names = input('Enter player names (each followed by a space):')
+cpu_list = make_big_list()  # Richard: Since names were entered before, this should work.
 
 
 def chip_tally():
@@ -1093,6 +1097,7 @@ while True:  # literally just makes it an infinite loop
             chips += 5
             startchips()
         elif current_key == "enter" and pos == 3:  # moves on to the game window
+            enter_chips(chips)  # Richard: PLEASE PLEASE PLEASE WORK!
             a.clear()
             c.clear()
             d.clear()
@@ -1284,5 +1289,3 @@ while current_key == "up":
     just a 0.4 sec break BEFORE the other functions run. this could also mean
     that any keyboard listens wont run while the code is executing, OR it 
     means that everything will just be delayed by 0.4 seconds who knows."""
-
-
