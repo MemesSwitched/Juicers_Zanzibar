@@ -54,6 +54,10 @@ waiting = True
 '''### NO MORE THAN 10-LINE FUNCTIONS! ###  (not a hard rule, 
 but an important guideline for leaves. -Hayden)'''
 
+
+
+"""Richard's leaf functions"""
+
 '''##########NEW#########'''
 #####
 biglist = []
@@ -95,9 +99,6 @@ maxrolls = 3
 # function thing
 # newlist = [data1, data2, data3]
 # all_data.append(newlist)
-
-
-"""Richard's leaf functions"""
 
 
 def change_turn():
