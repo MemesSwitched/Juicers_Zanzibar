@@ -928,7 +928,7 @@ def on_press(key):
         k = key.char  # if its just one letter
     except:
         k = key.name  # if its something like up or down
-    if k in ["enter", "left", "right", "up", "down", "r", "f", "c"]:  # what keys you want
+    if k in ["enter", "left", "right", "up", "down", "r", "f", "c", "n"]:  # what keys you want
         global key_pressed
         global current_key
         if key not in key_pressed:
@@ -954,7 +954,7 @@ def on_release(key):
         k = key.char  # if its just one letter
     except:
         k = key.name  # if its something like up or down
-    if k in ["enter", "left", "right", "up", "down", "r", "f", "c"]:  # what keys you want
+    if k in ["enter", "left", "right", "up", "down", "r", "f", "c", "n"]:  # what keys you want
         # here i would do the thing depending on the key lol
         global key_pressed
         if key in key_pressed:  # cool limiter i made to try and make pyinput not blow up my pc
