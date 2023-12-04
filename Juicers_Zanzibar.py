@@ -86,8 +86,11 @@ def make_big_list():  # This makes the big list we will use and keep using throu
     cpu_list = enter_names.split()
     for i in range(len(cpu_list)):
         biglist.append([cpu_list[i]])
+<<<<<<< Updated upstream
     print(biglist)
 
+=======
+>>>>>>> Stashed changes
     return biglist
 
 
@@ -187,7 +190,7 @@ dice_to_points(["1", "1", "1"])
 #  it incase something breaks -hayden
 
 # enter_names = input('Enter player names (each followed by a space):')
-cpu_list = make_big_list()  # Richard: Since names were entered before, this should work.
+
 
 
 def chip_tally():
@@ -996,7 +999,7 @@ while True:  # literally just makes it an infinite loop
     if current_key == "up":
         print("updog")  # silly debug to check if my code even works
         current_key = ""
-    import turtle as t
+    import turtle as t  # oh so pycharm isnt mad about THIS one not being at the top?
 
     if looping:
         start_window()
@@ -1135,6 +1138,7 @@ while True:  # literally just makes it an infinite loop
             gameing = True
             gameing_setup = True
             check += 1
+            cpu_list = make_big_list()  # Richard: Since names were entered before, this should work.
             mouse(0, 0)
         elif arrow == 'f' and pos == 3:
             a.clear()
