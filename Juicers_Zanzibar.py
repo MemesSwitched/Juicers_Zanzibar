@@ -180,14 +180,14 @@ dice_to_points(["1", "1", "1"])
 
 # enter_names = input('Enter player names (each followed by a space):')
 
-
+cpu_list = [1,3,5]
 
 def chip_tally():
     if len(cpu_list) < 2:
         print("No friends")
     else:
         print(f'There are {len(cpu_list)} players\n{cpu_list}')
-
+    global chips
     # assuming the scores for everyone from the round are
     # in a list 'cpu_scores' and is respected with stone_count
     # references values in dictionary from other file 'point_values'
@@ -215,7 +215,7 @@ def chip_tally():
         stone_count = [x - 4 for x in stone_count]
     print(stone_count)
     return stone_count
-
+print(chip_tally())
 
 """Hayden's leaf-oriented functions"""
 
