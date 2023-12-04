@@ -79,8 +79,6 @@ print(make_big_list())
 chipslimit = 0  # Placeholder. Will change before entering the game, and never again after. It's set.
 
 
-# My boy RubenSim did nothing wrong #unbanhimfromroblox
-
 def enter_chips():  # Run this after we enter the game.
     chips = int(input('Enter how many chips each player will have:\n'))
     for i in range(len(biglist)):  # AND NOW, we begin using biglist for our indexing! yay!
