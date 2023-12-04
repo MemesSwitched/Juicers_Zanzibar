@@ -78,17 +78,22 @@ def make_big_list():  # This makes the big list we will use and keep using throu
     cpu_list = enter_names.split()
     for i in range(len(cpu_list)):
         biglist.append([cpu_list[i]])
+    print(biglist)
 
     return biglist
 
 
-#print(make_big_list())
+make_big_list()
+
+
+# print(make_big_list())
 
 
 def enter_chips(chips_value):  # Run this after we ENTER the game. Uses set chips value to append.
     for i in range(len(biglist)):  # AND NOW, we begin using biglist for our indexing! yay!
         biglist[i].append(chips_value)
         biglist[i].append(0)  # This creates a placeholder for points per player in biglist.
+        print(biglist)
         # TODO: Orlando, from here on out, set biglist[i][2] = (points that round)!
 
     return biglist  # Every time. It's the same list we're working with after establishing names for the start of each!
@@ -97,30 +102,22 @@ def enter_chips(chips_value):  # Run this after we ENTER the game. Uses set chip
 # print(enter_chips())
 print(enter_chips(24))
 
-# function here maxrolls += 1
-maxrolls = 3
 
-
-# all_data = [["hayden", 20, 135]]
-# function thing
-# newlist = [data1, data2, data3]
-# all_data.append(newlist)
-
-
-def change_turn_add_points(pointsvalue):
+def change_turn():
     """
     "Player turn tracking," or an increasing-number loop dictating the index for which each player goes.
     This could be done by just numbers. When run, cannot run again for the same player until looping-through.
     """
     global current_turn
     global next_turn
-    biglist[current_turn][2] = pointsvalue  # current_turn can be used as index for biglist! Change default points.
+    # biglist[current_turn][2] = pointsvalue  # TODO: Orlando's points calc function can put this line and be done.
     current_turn = current_turn + 1 if current_turn <= len(biglist) - 1 else 1
     next_turn = current_turn + 1 if current_turn <= len(biglist) - 1 else 1
-    print(f'/// [[ TURN CHANGE ]] ///\nP{current_turn} plays.\nP{next_turn} goes next turn.')
+    print(biglist)
+    print(f'/// [[ TURN CHANGE ]] ///\n{biglist[current_turn][0]} plays.\n{biglist[next_turn][0]} goes next turn.')
 
 
-# change_turn_add_points(pointsvalue)
+# change_turn()
 
 
 def game_over():
