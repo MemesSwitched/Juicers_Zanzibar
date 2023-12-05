@@ -196,12 +196,8 @@ def chip_tally():
     global chips
     global stone_count
     global cpu_scores
-<<<<<<< Updated upstream
-    stone_count = [chips] * len(cpu_scores)
-=======
     stone_count = [chips] * len(p1dice)
     print(stone_count)
->>>>>>> Stashed changes
     for i in range(numplayers):
         val = p1dice[i]
         val = ''.join(val)
