@@ -87,18 +87,17 @@ def make_big_list():  # This makes the big list we will use and keep using throu
     cpu_list = enter_names.split()
     for i in range(len(cpu_list)):
         biglist.append([cpu_list[i]])
-    print(biglist)
+    print('this is biglist', biglist)
     return biglist
 
 
-
-#make_big_list()
+# make_big_list()
 
 
 def enter_chips(chips_value):  # Run this after we ENTER the game. Uses set chips value to append.
     global biglist  # dude its gonna crash if we dont do this -hayden
     for i in range(len(biglist)):  # AND NOW, we begin using biglist for our indexing! yay!
-        biglist[i].append(chips_value)
+        biglist[i].append(chips)
         biglist[i].append(0)  # This creates a placeholder for points per player in biglist.
         print(biglist)
         # TODO: Orlando, from here on out, set biglist[i][2] = (points that round)!
@@ -184,9 +183,9 @@ dice_to_points(["1", "1", "1"])
 
 #  it incase something breaks -hayden
 
-# enter_names = input('Enter player names (each followed by a space):')
 
-cpu_list = [1,3,5]
+cpu_list = [1, 3, 5]
+
 
 def chip_tally():
     if len(cpu_list) < 2:
@@ -221,6 +220,8 @@ def chip_tally():
         stone_count = [x - 4 for x in stone_count]
     print(stone_count)
     return stone_count
+
+
 print(chip_tally())
 
 """Hayden's leaf-oriented functions"""
@@ -1312,8 +1313,8 @@ while True:  # literally just makes it an infinite loop
             name = 'Player '
             name += str(player)
             if end_round:
-                for x in range (1, (1 + player)):  # yeah its gameing time
-                    print("p{}dice is {}" .format(x, p1dice[x - 1]))
+                for x in range(1, (1 + player)):  # yeah its gameing time
+                    print("p{}dice is {}".format(x, p1dice[x - 1]))
                     print(p1dice)  # the nested list of each players dice rolls, shove into tally
                     roll = 1  # resets the current roll counter for the next round if needed
                     gameing2 = True
@@ -1609,7 +1610,7 @@ while True:  # literally just makes it an infinite loop
 # this code is used to display whoever wins
 
 f.clear()
-t.setpos(0,0)
+t.setpos(0, 0)
 t.write(('Player', player, 'wins!'), align='center', font=('arial', 40, 'normal'))
 
 # this code never runs in normal "gameplay", see my paragraph below for more. -Hayden
