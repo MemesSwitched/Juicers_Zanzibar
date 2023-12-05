@@ -1322,73 +1322,81 @@ while True:  # literally just makes it an infinite loop
                 for x in range(1, (1 + player)):  # yeah its gameing time
                     print("p{}dice is {}".format(x, p1dice[x - 1]))
                     print(p1dice)  # the nested list of each players dice rolls, shove into tally
-                    roll = 1  # resets the current roll counter for the next round if needed
-                    gameing = False
-                    f.speed(0)
-                    f.clear()
-                    f.ht()
-                    f.setpos(0, 225)
-                    #f.write(('Player x had the highest score (', p1dice[max]') pwhile player y had the lowest(', p1dice[min]')'), align='center', font=(
-                    #'arial', 12, 'normal'))  # add the player names or numbers in here (whichever is easier)
-                    f.setpos(0, 200)
-                    f.write('All players give x chips to player y', align='center', font=('arial', 12, 'normal'))
-                    f.setpos((-25 * numplayers), -150)
-                    f.color('black')
-                    f.setpos((-32 * numplayers) + 10, -110)
-                    f.color('white')
-                    f.pendown()
-                    f.begin_fill()
-                    f.fd((50 * numplayers) + 25)
-                    f.rt(90)
-                    f.fd(35)
-                    f.rt(90)
-                    f.fd((50 * numplayers) + 25)
-                    f.rt(90)
-                    f.fd(70)
-                    f.rt(90)
-                    f.fd((50 * numplayers) + 25)
-                    f.rt(90)
-                    f.fd(35)
-                    f.lt(90)
-                    f.end_fill()
-                    f.penup()
-                    f.setpos((-32 * numplayers) + 10, -110)
-                    f.color('black')
-                    f.pendown()
-                    f.fd((50 * numplayers) + 25)
-                    f.rt(90)
-                    f.fd(35)
-                    f.rt(90)
-                    f.fd((50 * numplayers) + 25)
-                    f.rt(90)
-                    f.fd(70)
-                    f.rt(90)
-                    f.fd((50 * numplayers) + 25)
-                    f.rt(90)
-                    f.fd(35)
-                    f.lt(90)
-                    f.penup()
-                    f.setpos(0, -10)
-                    f.write('Chips', align='center', font=('arial', 30, 'normal'))
-                    f.setpos((-25 * numplayers), -150)
-                    f.color('black')
-                    for i in range(numplayers):  # I would recommend to use a list with the chip values
-                        # to show the scores in game, as you could just edit chips below
-                        # to be chips[i]
-                        f.write(chips, align='left', font=('arial', 30, 'normal'))
-                        f.fd(50)
-                    f.setpos((-25 * numplayers), -115)
-                    num = 1
-                    for i in range(numplayers):  # I would recommend to use a list with the chip values
-                        # to show the scores in game, as you could just edit chips below
-                        # to be chips[i]
-                        f.write((i + 1), align='left', font=('arial', 30, 'normal'))
-                        f.fd(50)
-                        num += 1
+                roll = 1  # resets the current roll counter for the next round if needed
+                f.speed(0)
+                f.clear()
+                f.ht()
+                f.setpos(0, 225)
+                #f.write(('Player x had the highest score (', p1dice[max]') pwhile player y had the lowest(', p1dice[min]')'), align='center', font=(
+                #'arial', 12, 'normal'))  # add the player names or numbers in here (whichever is easier)
+                f.setpos(0, 200)
+                f.write('All players give x chips to player y', align='center', font=('arial', 12, 'normal'))
+                f.setpos((-25 * numplayers), -150)
+                f.color('black')
+                f.setpos((-32 * numplayers) + 10, -110)
+                f.color('white')
+                f.pendown()
+                f.begin_fill()
+                f.fd((50 * numplayers) + 25)
+                f.rt(90)
+                f.fd(35)
+                f.rt(90)
+                f.fd((50 * numplayers) + 25)
+                f.rt(90)
+                f.fd(70)
+                f.rt(90)
+                f.fd((50 * numplayers) + 25)
+                f.rt(90)
+                f.fd(35)
+                f.lt(90)
+                f.end_fill()
+                f.penup()
+                f.setpos((-32 * numplayers) + 10, -110)
+                f.color('black')
+                f.pendown()
+                f.fd((50 * numplayers) + 25)
+                f.rt(90)
+                f.fd(35)
+                f.rt(90)
+                f.fd((50 * numplayers) + 25)
+                f.rt(90)
+                f.fd(70)
+                f.rt(90)
+                f.fd((50 * numplayers) + 25)
+                f.rt(90)
+                f.fd(35)
+                f.lt(90)
+                f.penup()
+                f.setpos(0, -10)
+                f.write('Chips', align='center', font=('arial', 30, 'normal'))
+                f.setpos((-25 * numplayers), -150)
+                f.color('black')
+                for i in range(numplayers):  # I would recommend to use a list with the chip values
+                    # to show the scores in game, as you could just edit chips below
+                    # to be chips[i]
+                    f.write(chips, align='left', font=('arial', 30, 'normal'))
+                    f.fd(50)
+                f.setpos((-25 * numplayers), -115)
+                num = 1
+                for i in range(numplayers):  # I would recommend to use a list with the chip values
+                    # to show the scores in game, as you could just edit chips below
+                    # to be chips[i]
+                    f.write((i + 1), align='left', font=('arial', 30, 'normal'))
+                    f.fd(50)
+                    num += 1
+                keyf = current_key
+                waiting = True
+                while waiting:
                     keyf = current_key
                     if keyf == 'enter':
                         f.clear()
                         end_round = False
+                        waiting = False
+                        gameing = False
+                        gameing2 = True
+                        current_key = ""
+                    else:
+                        pass
                 pass
                 # go to end of round
             else:
