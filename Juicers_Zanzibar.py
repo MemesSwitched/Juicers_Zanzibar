@@ -1464,7 +1464,8 @@ while True:  # literally just makes it an infinite loop
                     elif keyf == 'r':
                         while waiting:
                             rules()
-    if gameing2: # the gameplay loop for continuing rounds
+    """ The game loop for rounds after round 1"""
+    if gameing2:  # the gameplay loop for continuing rounds
         while gameing_setup:  # THE main game, now for the second round!
             player = 1  # this needs to be the winner of the last round.
             name = 'Player '
@@ -1606,7 +1607,7 @@ while True:  # literally just makes it an infinite loop
                     while waiting:
                         rules()
         while rest_of_turn:
-                    pass
+            pass
 # this code is used to display whoever wins
 
 f.clear()
