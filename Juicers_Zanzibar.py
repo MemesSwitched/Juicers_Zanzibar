@@ -190,10 +190,6 @@ stone_count = []
 
 def chip_tally():
     print('ANYBODY')
-    if len(cpu_list) < 2:
-        print("No friends")
-    else:
-        print(f'There are {len(cpu_list)} players\n{cpu_list}')
     global chips
     global stone_count
     global cpu_scores
