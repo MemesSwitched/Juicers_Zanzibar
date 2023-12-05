@@ -1324,13 +1324,12 @@ while True:  # literally just makes it an infinite loop
                     print(p1dice)  # the nested list of each players dice rolls, shove into tally
                     roll = 1  # resets the current roll counter for the next round if needed
                     gameing = False
-                    f.penup()
                     f.speed(0)
                     f.clear()
                     f.ht()
                     f.setpos(0, 225)
                     #f.write(('Player x had the highest score (', p1dice[max]') pwhile player y had the lowest(', p1dice[min]')'), align='center', font=(
-                    'arial', 12, 'normal'))  # add the player names or numbers in here (whichever is easier)
+                    #'arial', 12, 'normal'))  # add the player names or numbers in here (whichever is easier)
                     f.setpos(0, 200)
                     f.write('All players give x chips to player y', align='center', font=('arial', 12, 'normal'))
                     f.setpos((-25 * numplayers), -150)
