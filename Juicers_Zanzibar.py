@@ -216,7 +216,7 @@ def chip_tally():
         sorted_players = cpu_list.sort()
         lowest_score = cpu_list.index(sorted_players[0])
         stone_count[lowest_score] += 1
-        for x in range(len(cpu_list + 1)):
+        for x in range(len(cpu_list)):
             if x != lowest_score:
                 stone_count[x] -= 1
             else:
