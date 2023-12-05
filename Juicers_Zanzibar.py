@@ -185,6 +185,7 @@ dice_to_points(["1", "1", "1"])
 
 
 cpu_list = [1, 3, 5]
+stone_count = []
 
 
 def chip_tally():
@@ -193,12 +194,17 @@ def chip_tally():
     else:
         print(f'There are {len(cpu_list)} players\n{cpu_list}')
     global chips
-    # assuming the scores for everyone from the round are
+    global stone_count
+    global cpu_scores
+    stone_count = [chips] * len(cpu_scores)
+    for i in range(numplayers):
+        val = p1dice[i]
+        val = ''.join(val)
+        print(val)
+        cpu_scores.append(val)  # assuming the scores for everyone from the round are
     # in a list 'cpu_scores' and is respected with stone_count
     # references values in dictionary from other file 'point_values'
     # and 'comb_values'
-    stone_count = [20] * len(cpu_list)
-    cpu_scores = [250, 303, 200]  ##### hypothetical
 
     if 1 < max(cpu_scores) <= 260:
         stone_count[cpu_scores.index(min(cpu_scores))] = stone_count[cpu_scores.index(min(cpu_scores))] + (
