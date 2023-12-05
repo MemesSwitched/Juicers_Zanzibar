@@ -51,7 +51,8 @@ next_turn = 0
 """/// Orlando's Global Variables///"""
 cpu_scores = []
 score = set()  # I cleaned this up to have continuity with the other function orlando made
-
+first_tally = True
+###
 """/// Jude's Global Variables///"""
 game = 0
 check = 0
@@ -189,42 +190,50 @@ stone_count = []
 
 
 def chip_tally():
-    if len(cpu_list) < 2:
-        print("No friends")
-    else:
-        print(f'There are {len(cpu_list)} players\n{cpu_list}')
+    print('ANYBODY')
     global chips
     global stone_count
     global cpu_scores
-    stone_count = [chips] * len(p1dice)
+    global first_tally
+    if first_tally:
+        stone_count = [chips] * len(p1dice)
+        first_tally = False
     for i in range(numplayers):
+        print(p1dice)
         val = p1dice[i]
         val = ''.join(val)
-        print(val)
+        print('it is first', val)
+        val = dice_to_points(val)
+        print('it is', val)
         cpu_scores.append(val)  # assuming the scores for everyone from the round are
     # in a list 'cpu_scores' and is respected with stone_count
     # references values in dictionary from other file 'point_values'
     # and 'comb_values'
 
     if 1 < max(cpu_scores) <= 260:
-        stone_count[cpu_scores.index(min(cpu_scores))] = stone_count[cpu_scores.index(min(cpu_scores))] + (
-                1 * (len(cpu_list) - 1)) + 1
-        stone_count = [x - 1 for x in stone_count]
+        # stone_count[cpu_scores.index(min(cpu_scores))] += (1 * (len(cpu_list) - 1)) + 1
+        # stone_count = [x - 1 for x in stone_count]
+        sorted_players = cpu_list.sort()
+        lowest_score = cpu_list.index(sorted_players[0])
+        stone_count[lowest_score] += 1
+        for x in range(len(cpu_list)):
+            if x != lowest_score:
+                stone_count[x] -= 1
+            else:
+                pass
 
     elif max(cpu_scores) == 301:
-        stone_count[cpu_scores.index(min(cpu_scores))] = stone_count[cpu_scores.index(min(cpu_scores))] + (
-                2 * (len(cpu_list) - 1)) + 2
+        stone_count[cpu_scores.index(min(cpu_scores))] += (2 * (len(cpu_list) - 1)) + 2
         stone_count = [x - 2 for x in stone_count]
 
     elif 302 <= max(cpu_scores) <= 307:
-        stone_count[cpu_scores.index(min(cpu_scores))] = stone_count[cpu_scores.index(min(cpu_scores))] + (
-                3 * (len(cpu_list) - 1)) + 3
+        stone_count[cpu_scores.index(min(cpu_scores))] += (3 * (len(cpu_list) - 1)) + 3
         stone_count = [x - 3 for x in stone_count]
     else:
-        stone_count[cpu_scores.index(min(cpu_scores))] = stone_count[cpu_scores.index(min(cpu_scores))] + (
-                4 * (len(cpu_list) - 1)) + 4
+        stone_count[cpu_scores.index(min(cpu_scores))] += (4 * (len(cpu_list) - 1)) + 4
         stone_count = [x - 4 for x in stone_count]
     print(stone_count)
+
     return stone_count
 
 
@@ -1141,7 +1150,7 @@ while True:  # literally just makes it an infinite loop
             gameing = True
             gameing_setup = True
             check += 1
-            cpu_list = make_big_list()  # Richard: Since names were entered before, this should work.
+            #cpu_list = make_big_list()  # Richard: Since names were entered before, this should work.
             enter_chips(chips)
             print(biglist)
             mouse(0, 0)
@@ -1319,6 +1328,7 @@ while True:  # literally just makes it an infinite loop
             name = 'Player '
             name += str(player)
             if end_round:
+                chip_tally()
                 for x in range(1, (1 + player)):  # yeah its gameing time
                     print("p{}dice is {}".format(x, p1dice[x - 1]))
                     print(p1dice)  # the nested list of each players dice rolls, shove into tally
