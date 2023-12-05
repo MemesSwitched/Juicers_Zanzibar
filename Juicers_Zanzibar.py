@@ -199,6 +199,7 @@ def chip_tally():
     global cpu_scores
     stone_count = [chips] * len(p1dice)
     for i in range(numplayers):
+        print(p1dice)
         val = p1dice[i]
         val = ''.join(val)
         print(val)
@@ -1142,7 +1143,7 @@ while True:  # literally just makes it an infinite loop
             gameing = True
             gameing_setup = True
             check += 1
-            cpu_list = make_big_list()  # Richard: Since names were entered before, this should work.
+            #cpu_list = make_big_list()  # Richard: Since names were entered before, this should work.
             enter_chips(chips)
             print(biglist)
             mouse(0, 0)
