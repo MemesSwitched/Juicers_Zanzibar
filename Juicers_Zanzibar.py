@@ -15,7 +15,7 @@
 """currently, math isn't called so im keeping it unimported for efficiency"""
 from random import randint
 from time import sleep
-
+from datetime import *
 from pynput import keyboard
 
 """/// Hayden's Global Variables ///"""
@@ -28,6 +28,7 @@ end_round = False
 """"keyboard input related global variables"""
 key_pressed = set()  # the current key being pressed down, globally as a truly blank variable
 current_key = ""  # stores the current key as a str for key released (idk why)
+loser = 1
 ###
 
 
@@ -1986,12 +1987,17 @@ while True:  # literally just makes it an infinite loop
     if haswon:
         f.clear()
         t.setpos(0, 0)
+        outputting = sorted(stone_count)
         for i in range(len(stone_count)):
+            if stone_count[i] == outputting[-1]:
+                loser = (i + 1)
             if stone_count[i] <= 0:
                 player = (i + 1)
         t.write(f'Player {player} wins!', align='center', font=('arial', 40, 'normal'))
-
-# this code is used to display whoever wins
+        winning_results = open("Zanzibar_results_{}.dat".format(date.today().isoformat()), "w")
+        winning_results.write("The winner is {}! The person in last place is {} with {} chips" .format(player, loser, outputting[-1]))
+        winning_results.close()
+        # this code is used to display whoever wins
 
 f.clear()
 t.setpos(0, 0)
