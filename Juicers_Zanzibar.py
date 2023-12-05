@@ -184,7 +184,7 @@ dice_to_points(["1", "1", "1"])
 #  it incase something breaks -hayden
 
 
-cpu_list = [1, 3, 5]
+cpu_list = []
 stone_count = []
 
 
@@ -196,7 +196,7 @@ def chip_tally():
     global chips
     global stone_count
     global cpu_scores
-    stone_count = [chips] * len(cpu_scores)
+    stone_count = [chips] * len(p1dice)
     for i in range(numplayers):
         val = p1dice[i]
         val = ''.join(val)
