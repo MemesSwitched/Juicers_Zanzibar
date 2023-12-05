@@ -214,7 +214,7 @@ def chip_tally():
         sorted_players = cpu_list.sort()
         lowest_score = cpu_list.index(sorted_players[0])
         stone_count[lowest_score] += 1
-        for x in range(len(cpu_list + 1)):
+        for x in range(len(cpu_list)):
             if x != lowest_score:
                 stone_count[x] -= 1
             else:
@@ -1403,7 +1403,7 @@ while True:  # literally just makes it an infinite loop
                 for i in range(numplayers):  # I would recommend to use a list with the chip values
                     # to show the scores in game, as you could just edit chips below
                     # to be chips[i]
-                    f.write(chips, align='left', font=('arial', 30, 'normal'))
+                    f.write(stone_count[i], align='left', font=('arial', 30, 'normal'))
                     f.fd(50)
                 f.setpos((-25 * numplayers), -115)
                 num = 1
@@ -1484,7 +1484,7 @@ while True:  # literally just makes it an infinite loop
                 for i in range(numplayers):  # I would recommend to use a list with the chip values
                     # to show the scores in game, as you could just edit chips below
                     # to be chips[i]
-                    f.write(chips, align='left', font=('arial', 30, 'normal'))
+                    f.write(stone_count[i], align='left', font=('arial', 30, 'normal'))
                     f.fd(50)
                 f.setpos((-25 * numplayers), -115)
                 num = 1
@@ -1629,7 +1629,7 @@ while True:  # literally just makes it an infinite loop
                 # to show the scores in game, as you could just edit chips below
                 # to be chips[i]
                 # Gather the list of chips from each player in biglist, then replace "chips" with it
-                f.write(chips, align='left', font=('arial', 30, 'normal'))
+                f.write(stone_count[i], align='left', font=('arial', 30, 'normal'))
                 f.fd(50)
             f.setpos((-25 * numplayers), -115)
             num = 1
@@ -1723,8 +1723,8 @@ while True:  # literally just makes it an infinite loop
 
 f.clear()
 t.setpos(0, 0)
-t.write(('Player', player, 'wins!'), align='center', font=('arial', 40, 'normal'))
-
+#t.write(f'Player {player} wins!', align='center', font=('arial', 40, 'normal'))
+#change player to
 # this code never runs in normal "gameplay", see my paragraph below for more. -Hayden
 while current_key == "up":
     print("updog")
