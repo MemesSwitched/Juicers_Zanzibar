@@ -210,18 +210,22 @@ def chip_tally():
     # and 'comb_values'
 
     if 1 < max(cpu_scores) <= 260:
-        stone_count[cpu_scores.index(min(cpu_scores))] += (1 * (len(cpu_list) - 1)) + 1
+        stone_count[cpu_scores.index(min(cpu_scores))] = stone_count[cpu_scores.index(min(cpu_scores))] + (
+                    1 * (len(cpu_list) - 1)) + 1
         stone_count = [x - 1 for x in stone_count]
 
     elif max(cpu_scores) == 301:
-        stone_count[cpu_scores.index(min(cpu_scores))] += (2 * (len(cpu_list) - 1)) + 2
+        stone_count[cpu_scores.index(min(cpu_scores))] = stone_count[cpu_scores.index(min(cpu_scores))] + (
+                    2 * (len(cpu_list) - 1)) + 2
         stone_count = [x - 2 for x in stone_count]
 
     elif 302 <= max(cpu_scores) <= 307:
-        stone_count[cpu_scores.index(min(cpu_scores))] += (3 * (len(cpu_list) - 1)) + 3
+        stone_count[cpu_scores.index(min(cpu_scores))] = stone_count[cpu_scores.index(min(cpu_scores))] + (
+                    3 * (len(cpu_list) - 1)) + 3
         stone_count = [x - 3 for x in stone_count]
     else:
-        stone_count[cpu_scores.index(min(cpu_scores))] += (4 * (len(cpu_list) - 1)) + 4
+        stone_count[cpu_scores.index(min(cpu_scores))] = stone_count[cpu_scores.index(min(cpu_scores))] + (
+                    4 * (len(cpu_list) - 1)) + 4
         stone_count = [x - 4 for x in stone_count]
     print(stone_count)
     return stone_count
