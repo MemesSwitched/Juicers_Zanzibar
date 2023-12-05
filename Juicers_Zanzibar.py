@@ -181,7 +181,6 @@ def dice_to_points(x):
     return score
 
 
-
 # dice_to_points(["1", "1", "1"])
 # i'd assume that we're going to make score append/set a dictionary to keep track of
 # each player/cpu's scores - hayden
@@ -1189,7 +1188,7 @@ while True:  # literally just makes it an infinite loop
             gameing = True
             gameing_setup = True
             check += 1
-            #cpu_list = make_big_list()  # Richard: Since names were entered before, this should work.
+            # cpu_list = make_big_list()  # Richard: Since names were entered before, this should work.
             enter_chips(chips)
             print(biglist)
             mouse(0, 0)
@@ -1376,10 +1375,11 @@ while True:  # literally just makes it an infinite loop
                 f.clear()
                 f.ht()
                 f.setpos(0, 225)
-                #f.write(('Player x had the highest score (', p1dice[max]') pwhile player y had the lowest(', p1dice[min]')'), align='center', font=(
-                #'arial', 12, 'normal'))  # add the player names or numbers in here (whichever is easier)
+                # f.write(('Player x had the highest score (', p1dice[max]') pwhile player y had the lowest(', p1dice[min]')'), align='center', font=(
+                # 'arial', 12, 'normal'))  # add the player names or numbers in here (whichever is easier)
                 f.setpos(0, 200)
-                f.write('All players give {} chip(s) to player {}' .format(losing, lowest_score + 1), align='center', font=('arial', 12, 'normal'))
+                f.write('All players give {} chip(s) to player {}'.format(losing, lowest_score + 1), align='center',
+                        font=('arial', 12, 'normal'))
                 f.setpos((-25 * numplayers), -150)
                 f.color('black')
                 f.setpos((-32 * numplayers) + 10, -110)
@@ -1765,10 +1765,11 @@ while True:  # literally just makes it an infinite loop
                     f.clear()
                     f.ht()
                     f.setpos(0, 225)
-                    #f.write(('Player x had the highest score (', p1dice[max]') pwhile player y had the lowest(', p1dice[min]')'), align='center', font=(
-                    #'arial', 12, 'normal'))  # add the player names or numbers in here (whichever is easier)
+                    # f.write(('Player x had the highest score (', p1dice[max]') pwhile player y had the lowest(', p1dice[min]')'), align='center', font=(
+                    # 'arial', 12, 'normal'))  # add the player names or numbers in here (whichever is easier)
                     f.setpos(0, 200)
-                    f.write('All players give {} chip(s) to player {}' .format(losing, lowest_score + 1), align='center', font=('arial', 12, 'normal'))
+                    f.write('All players give {} chip(s) to player {}'.format(losing, lowest_score + 1), align='center',
+                            font=('arial', 12, 'normal'))
                     f.setpos((-25 * numplayers), -150)
                     f.color('black')
                     f.setpos((-32 * numplayers) + 10, -110)
@@ -1989,7 +1990,8 @@ while True:  # literally just makes it an infinite loop
         if temp:
             t.write(f'Player {player} wins!', align='center', font=('arial', 40, 'normal'))
             winning_results = open("Zanzibar_results_{}.dat".format(date.today().isoformat()), "w")
-            winning_results.write("The winner is {}! The person in last place is {} with {} chips" .format(player, loser, outputting[-1]))
+            winning_results.write(
+                "The winner is {}! The person in last place is {} with {} chips".format(player, loser, outputting[-1]))
             winning_results.close()
             temp = False
         f.clear()
@@ -2004,8 +2006,8 @@ while True:  # literally just makes it an infinite loop
 
 f.clear()
 t.setpos(0, 0)
-#t.write(f'Player {player} wins!', align='center', font=('arial', 40, 'normal'))
-#change player to
+# t.write(f'Player {player} wins!', align='center', font=('arial', 40, 'normal'))
+# change player to
 # this code never runs in normal "gameplay", see my paragraph below for more. -Hayden
 while current_key == "up":
     print("updog")
