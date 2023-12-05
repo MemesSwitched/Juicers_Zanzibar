@@ -149,18 +149,17 @@ def game_over():
 """Orlando's leaf-oriented functions"""
 
 
-def dice_to_points(x):
+def dice_to_points():
     point_values = {'1': 100, '2': 2, '3': 3, '4': 4, '5': 5, '6': 60}
     comb_values = {'123': 301, '666': 302, '555': 303, '444': 304, '333': 305, '222': 306, '111': 307, '456': 310}
 
     rand_values = dicerolls(3)
     print(' '.join(rand_values))
-    # works kinda -hayden
     dice_numbers = ''.join(rand_values)  # set of numbers as one string
     """idk why you had to make the dice rolls strings, not integers, but it works
     so im not gonna complain!"""
     list_of_values = []
-    #global cpu_scores, score
+    global cpu_scores, score
 
     if dice_numbers in comb_values:
         score = comb_values.get(dice_numbers)
