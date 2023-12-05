@@ -150,18 +150,12 @@ def game_over():
 """Orlando's leaf-oriented functions"""
 
 
-def dice_to_points(x):
-    """orlando didn't write a doc string, nor did he even make it a funciton
-    but im going to assume this is how he intended it to be executed. im not
-    hatin on you, it was just kinda weird to implement this into the game lol
-    Use: dice_to_points(x): where x is the current set of dice roll (list of
-    3)."""
+def dice_to_points():
     point_values = {'1': 100, '2': 2, '3': 3, '4': 4, '5': 5, '6': 60}
     comb_values = {'123': 301, '666': 302, '555': 303, '444': 304, '333': 305, '222': 306, '111': 307, '456': 310}
-    # making sure the comb_values are higher than the point_values
-    rand_values = x  # no clue why orlando named it rand_values, but i just slapped a function input on it and it
-    # works kinda -hayden
-    # rand_values = sorted(input("Random set of numbers:"))  ## for testing
+
+    rand_values = dicerolls(3)
+    print(' '.join(rand_values))
     dice_numbers = ''.join(rand_values)  # set of numbers as one string
     """idk why you had to make the dice rolls strings, not integers, but it works
     so im not gonna complain!"""
@@ -170,12 +164,16 @@ def dice_to_points(x):
 
     if dice_numbers in comb_values:
         score = comb_values.get(dice_numbers)
+        player_info[current_turn][2] = score
+        ####### current_turn  to get index
     else:
         for i in rand_values:
             list_of_values.append(point_values[i])
             score = int(sum(list_of_values))
-    print(score)  ## to check if score is right
+            player_info[current_turn][2] = score
+    list_of_values.clear()
     return score
+
 
 
 dice_to_points(["1", "1", "1"])
@@ -257,7 +255,7 @@ def chip_tally():
                 stone_count[x] -= 4
             else:
                 pass
-
+    print(stone_count)
     return stone_count
 
 
