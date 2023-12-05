@@ -201,7 +201,7 @@ def chip_tally():
         val = p1dice[i]
         val = ''.join(val)
         print(val)
-        cpu_scores.append(val)  # assuming the scores for everyone from the round are
+        cpu_scores.append(dice_to_points(val))  # assuming the scores for everyone from the round are
     # in a list 'cpu_scores' and is respected with stone_count
     # references values in dictionary from other file 'point_values'
     # and 'comb_values'
