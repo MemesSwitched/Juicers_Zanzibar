@@ -1320,8 +1320,8 @@ while True:  # literally just makes it an infinite loop
             # as soon as player starts the game
             name = 'Player '
             name += str(player)
-            chip_tally()
             if end_round:
+                chip_tally()
                 for x in range(1, (1 + player)):  # yeah its gameing time
                     print("p{}dice is {}".format(x, p1dice[x - 1]))
                     print(p1dice)  # the nested list of each players dice rolls, shove into tally
