@@ -1694,8 +1694,8 @@ while True:  # literally just makes it an infinite loop
 
 f.clear()
 t.setpos(0, 0)
-t.write(('Player', player, 'wins!'), align='center', font=('arial', 40, 'normal'))
-
+#t.write(f'Player {player} wins!', align='center', font=('arial', 40, 'normal'))
+#change player to
 # this code never runs in normal "gameplay", see my paragraph below for more. -Hayden
 while current_key == "up":
     print("updog")
