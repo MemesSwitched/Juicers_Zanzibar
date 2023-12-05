@@ -182,11 +182,12 @@ dice_to_points(["1", "1", "1"])
 #  it incase something breaks -hayden
 
 
-cpu_list = [1, 3, 5]
+cpu_list = []
 stone_count = []
 
 
 def chip_tally():
+    print('ANYBODY')
     if len(cpu_list) < 2:
         print("No friends")
     else:
@@ -195,33 +196,32 @@ def chip_tally():
     global stone_count
     global cpu_scores
     stone_count = [chips] * len(p1dice)
-    print(stone_count)
     for i in range(numplayers):
+        print(p1dice)
         val = p1dice[i]
         val = ''.join(val)
-        print(val)
+        print('it is first', val)
+
+        val = dice_to_points(val)
+        print('it is', val)
         cpu_scores.append(val)  # assuming the scores for everyone from the round are
     # in a list 'cpu_scores' and is respected with stone_count
     # references values in dictionary from other file 'point_values'
     # and 'comb_values'
 
     if 1 < max(cpu_scores) <= 260:
-        stone_count[cpu_scores.index(min(cpu_scores))] = stone_count[cpu_scores.index(min(cpu_scores))] + (
-                1 * (len(cpu_list) - 1)) + 1
+        stone_count[cpu_scores.index(min(cpu_scores))] += (1 * (len(cpu_list) - 1)) + 1
         stone_count = [x - 1 for x in stone_count]
 
     elif max(cpu_scores) == 301:
-        stone_count[cpu_scores.index(min(cpu_scores))] = stone_count[cpu_scores.index(min(cpu_scores))] + (
-                2 * (len(cpu_list) - 1)) + 2
+        stone_count[cpu_scores.index(min(cpu_scores))] += (2 * (len(cpu_list) - 1)) + 2
         stone_count = [x - 2 for x in stone_count]
 
     elif 302 <= max(cpu_scores) <= 307:
-        stone_count[cpu_scores.index(min(cpu_scores))] = stone_count[cpu_scores.index(min(cpu_scores))] + (
-                3 * (len(cpu_list) - 1)) + 3
+        stone_count[cpu_scores.index(min(cpu_scores))] += (3 * (len(cpu_list) - 1)) + 3
         stone_count = [x - 3 for x in stone_count]
     else:
-        stone_count[cpu_scores.index(min(cpu_scores))] = stone_count[cpu_scores.index(min(cpu_scores))] + (
-                4 * (len(cpu_list) - 1)) + 4
+        stone_count[cpu_scores.index(min(cpu_scores))] += (4 * (len(cpu_list) - 1)) + 4
         stone_count = [x - 4 for x in stone_count]
     print(stone_count)
     return stone_count
@@ -1140,7 +1140,7 @@ while True:  # literally just makes it an infinite loop
             gameing = True
             gameing_setup = True
             check += 1
-            cpu_list = make_big_list()  # Richard: Since names were entered before, this should work.
+            #cpu_list = make_big_list()  # Richard: Since names were entered before, this should work.
             enter_chips(chips)
             print(biglist)
             mouse(0, 0)
@@ -1318,73 +1318,87 @@ while True:  # literally just makes it an infinite loop
             name = 'Player '
             name += str(player)
             if end_round:
+                chip_tally()
                 for x in range(1, (1 + player)):  # yeah its gameing time
                     print("p{}dice is {}".format(x, p1dice[x - 1]))
                     print(p1dice)  # the nested list of each players dice rolls, shove into tally
-                    roll = 1  # resets the current roll counter for the next round if needed
-                    gameing = False
-                    f.penup()
-                    f.speed(0)
-                    f.clear()
-                    f.ht()
-                    f.setpos(0, 225)
-                    #f.write(('Player x had the highest score (', p1dice[max]') pwhile player y had the lowest(', p1dice[min]')'), align='center', font=(
-                    # 'arial', 12, 'normal'))  # add the player names or numbers in here (whichever is easier)
-                    f.setpos(0, 200)
-                    f.write('All players give x chips to player y', align='center', font=('arial', 12, 'normal'))
-                    f.setpos((-25 * numplayers), -150)
-                    f.color('black')
-                    f.setpos((-32 * numplayers) + 10, -110)
-                    f.color('white')
-                    f.pendown()
-                    f.begin_fill()
-                    f.fd((50 * numplayers) + 25)
-                    f.rt(90)
-                    f.fd(35)
-                    f.rt(90)
-                    f.fd((50 * numplayers) + 25)
-                    f.rt(90)
-                    f.fd(70)
-                    f.rt(90)
-                    f.fd((50 * numplayers) + 25)
-                    f.rt(90)
-                    f.fd(35)
-                    f.lt(90)
-                    f.end_fill()
-                    f.penup()
-                    f.setpos((-32 * numplayers) + 10, -110)
-                    f.color('black')
-                    f.pendown()
-                    f.fd((50 * numplayers) + 25)
-                    f.rt(90)
-                    f.fd(35)
-                    f.rt(90)
-                    f.fd((50 * numplayers) + 25)
-                    f.rt(90)
-                    f.fd(70)
-                    f.rt(90)
-                    f.fd((50 * numplayers) + 25)
-                    f.rt(90)
-                    f.fd(35)
-                    f.lt(90)
-                    f.penup()
-                    f.setpos(0, -10)
-                    f.write('Chips', align='center', font=('arial', 30, 'normal'))
-                    f.setpos((-25 * numplayers), -150)
-                    f.color('black')
-                    for i in range(numplayers):  # I would recommend to use a list with the chip values
-                        # to show the scores in game, as you could just edit chips below
-                        # to be chips[i]
-                        f.write(chips, align='left', font=('arial', 30, 'normal'))
-                        f.fd(50)
-                    f.setpos((-25 * numplayers), -115)
-                    num = 1
-                    for i in range(numplayers):  # I would recommend to use a list with the chip values
-                        # to show the scores in game, as you could just edit chips below
-                        # to be chips[i]
-                        f.write((i + 1), align='left', font=('arial', 30, 'normal'))
-                        f.fd(50)
-                        num += 1
+                roll = 1  # resets the current roll counter for the next round if needed
+                f.speed(0)
+                f.clear()
+                f.ht()
+                f.setpos(0, 225)
+                #f.write(('Player x had the highest score (', p1dice[max]') pwhile player y had the lowest(', p1dice[min]')'), align='center', font=(
+                #'arial', 12, 'normal'))  # add the player names or numbers in here (whichever is easier)
+                f.setpos(0, 200)
+                f.write('All players give x chips to player y', align='center', font=('arial', 12, 'normal'))
+                f.setpos((-25 * numplayers), -150)
+                f.color('black')
+                f.setpos((-32 * numplayers) + 10, -110)
+                f.color('white')
+                f.pendown()
+                f.begin_fill()
+                f.fd((50 * numplayers) + 25)
+                f.rt(90)
+                f.fd(35)
+                f.rt(90)
+                f.fd((50 * numplayers) + 25)
+                f.rt(90)
+                f.fd(70)
+                f.rt(90)
+                f.fd((50 * numplayers) + 25)
+                f.rt(90)
+                f.fd(35)
+                f.lt(90)
+                f.end_fill()
+                f.penup()
+                f.setpos((-32 * numplayers) + 10, -110)
+                f.color('black')
+                f.pendown()
+                f.fd((50 * numplayers) + 25)
+                f.rt(90)
+                f.fd(35)
+                f.rt(90)
+                f.fd((50 * numplayers) + 25)
+                f.rt(90)
+                f.fd(70)
+                f.rt(90)
+                f.fd((50 * numplayers) + 25)
+                f.rt(90)
+                f.fd(35)
+                f.lt(90)
+                f.penup()
+                f.setpos(0, -10)
+                f.write('Chips', align='center', font=('arial', 30, 'normal'))
+                f.setpos((-25 * numplayers), -150)
+                f.color('black')
+                for i in range(numplayers):  # I would recommend to use a list with the chip values
+                    # to show the scores in game, as you could just edit chips below
+                    # to be chips[i]
+                    f.write(chips, align='left', font=('arial', 30, 'normal'))
+                    f.fd(50)
+                f.setpos((-25 * numplayers), -115)
+                num = 1
+                for i in range(numplayers):  # I would recommend to use a list with the chip values
+                    # to show the scores in game, as you could just edit chips below
+                    # to be chips[i]
+                    f.write((i + 1), align='left', font=('arial', 30, 'normal'))
+                    f.fd(50)
+                    num += 1
+                keyf = current_key
+                waiting = True
+                while waiting:
+                    keyf = current_key
+                    if keyf == 'enter':
+                        f.clear()
+                        end_round = False
+                        waiting = False
+                        gameing = False
+                        gameing2 = True
+                        gameing_setup2 = True
+                        rest_of_turn = False
+                        current_key = ""
+                    else:
+                        pass
                 pass
                 # go to end of round
             else:
@@ -1532,7 +1546,7 @@ while True:  # literally just makes it an infinite loop
                             rules()
     """ The game loop for rounds after round 1"""
     if gameing2:  # the gameplay loop for continuing rounds
-        while gameing_setup:  # THE main game, now for the second round!
+        while gameing_setup2:  # THE main game, now for the second round!
             player = 1  # this needs to be the winner of the last round.
             name = 'Player '
             name += str(player)
@@ -1653,8 +1667,8 @@ while True:  # literally just makes it an infinite loop
                             f.clear()  # This clears the dice layer
                             waiting = False
                             max_rolls = rolls  # should be keeping track of this as the max rolls.
-                            gameing_setup = False  # this will make it exit the round 1 turn 1 loop.
-                            rest_of_turn = True
+                            gameing_setup2 = False  # this will make it exit the round 1 turn 1 loop.
+                            rest_of_turn2 = True
                             rolls = 1
                             player += 1
                             p1dice[0].append(pdice[0])
@@ -1672,8 +1686,10 @@ while True:  # literally just makes it an infinite loop
                 elif keyf == 'r':
                     while waiting:
                         rules()
-        while rest_of_turn:
+        while rest_of_turn2:
             pass
+
+
 # this code is used to display whoever wins
 
 f.clear()
