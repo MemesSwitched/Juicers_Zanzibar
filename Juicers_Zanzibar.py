@@ -1394,6 +1394,8 @@ while True:  # literally just makes it an infinite loop
                         waiting = False
                         gameing = False
                         gameing2 = True
+                        gameing_setup2 = True
+                        rest_of_turn = False
                         current_key = ""
                     else:
                         pass
@@ -1544,7 +1546,7 @@ while True:  # literally just makes it an infinite loop
                             rules()
     """ The game loop for rounds after round 1"""
     if gameing2:  # the gameplay loop for continuing rounds
-        while gameing_setup:  # THE main game, now for the second round!
+        while gameing_setup2:  # THE main game, now for the second round!
             player = 1  # this needs to be the winner of the last round.
             name = 'Player '
             name += str(player)
@@ -1665,8 +1667,8 @@ while True:  # literally just makes it an infinite loop
                             f.clear()  # This clears the dice layer
                             waiting = False
                             max_rolls = rolls  # should be keeping track of this as the max rolls.
-                            gameing_setup = False  # this will make it exit the round 1 turn 1 loop.
-                            rest_of_turn = True
+                            gameing_setup2 = False  # this will make it exit the round 1 turn 1 loop.
+                            rest_of_turn2 = True
                             rolls = 1
                             player += 1
                             p1dice[0].append(pdice[0])
@@ -1684,8 +1686,10 @@ while True:  # literally just makes it an infinite loop
                 elif keyf == 'r':
                     while waiting:
                         rules()
-        while rest_of_turn:
+        while rest_of_turn2:
             pass
+
+
 # this code is used to display whoever wins
 
 f.clear()
