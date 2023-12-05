@@ -1754,6 +1754,7 @@ while True:  # literally just makes it an infinite loop
                         waiting = False
                         haswon = True
                 if haswon:
+                    temp = True
                     break
                 else:
                     for x in range(1, (1 + player)):  # yeah its gameing time
@@ -1985,6 +1986,12 @@ while True:  # literally just makes it an infinite loop
                         while waiting:
                             rules()
     if haswon:
+        if temp:
+            t.write(f'Player {player} wins!', align='center', font=('arial', 40, 'normal'))
+            winning_results = open("Zanzibar_results_{}.dat".format(date.today().isoformat()), "w")
+            winning_results.write("The winner is {}! The person in last place is {} with {} chips" .format(player, loser, outputting[-1]))
+            winning_results.close()
+            temp = False
         f.clear()
         t.setpos(0, 0)
         outputting = sorted(stone_count)
@@ -1993,10 +2000,6 @@ while True:  # literally just makes it an infinite loop
                 loser = (i + 1)
             if stone_count[i] <= 0:
                 player = (i + 1)
-        t.write(f'Player {player} wins!', align='center', font=('arial', 40, 'normal'))
-        winning_results = open("Zanzibar_results_{}.dat".format(date.today().isoformat()), "w")
-        winning_results.write("The winner is {}! The person in last place is {} with {} chips" .format(player, loser, outputting[-1]))
-        winning_results.close()
         # this code is used to display whoever wins
 
 f.clear()
