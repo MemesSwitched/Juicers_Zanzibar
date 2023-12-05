@@ -228,7 +228,6 @@ def chip_tally():
     return stone_count
 
 
-print(chip_tally())
 
 """Hayden's leaf-oriented functions"""
 
