@@ -72,6 +72,7 @@ haswon = False
 rest_of_turn = False  # the loop for when its not the first turn of the round
 chipmenu = []  # list of chips for each player by index
 gameing2 = False
+round_results = False
 
 '''### NO MORE THAN 10-LINE FUNCTIONS! ###  (not a hard rule, 
 but an important guideline for leaves. -Hayden)'''
@@ -1325,7 +1326,7 @@ while True:  # literally just makes it an infinite loop
                     print("p{}dice is {}".format(x, p1dice[x - 1]))
                     print(p1dice)  # the nested list of each players dice rolls, shove into tally
                     roll = 1  # resets the current roll counter for the next round if needed
-                    gameing2 = True
+                    round_results: True
                     gameing = False
                 pass
                 # go to end of round
@@ -1473,6 +1474,8 @@ while True:  # literally just makes it an infinite loop
                         while waiting:
                             rules()
     """ The game loop for rounds after round 1"""
+    if round_results:
+
     if gameing2:  # the gameplay loop for continuing rounds
         while gameing_setup:  # THE main game, now for the second round!
             player = 1  # this needs to be the winner of the last round.
