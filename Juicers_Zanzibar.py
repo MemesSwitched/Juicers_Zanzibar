@@ -52,6 +52,9 @@ next_turn = 0
 cpu_scores = []
 score = set()  # I cleaned this up to have continuity with the other function orlando made
 first_tally = True
+highest_score = 0
+lowest_score = 0
+losing = 0
 ###
 """/// Jude's Global Variables///"""
 game = 0
@@ -150,33 +153,35 @@ def game_over():
 """Orlando's leaf-oriented functions"""
 
 
-def dice_to_points():
+def dice_to_points(x):
+    """orlando didn't write a doc string, nor did he even make it a funciton
+    but im going to assume this is how he intended it to be executed. im not
+    hatin on you, it was just kinda weird to implement this into the game lol
+    Use: dice_to_points(x): where x is the current set of dice roll (list of
+    3)."""
     point_values = {'1': 100, '2': 2, '3': 3, '4': 4, '5': 5, '6': 60}
     comb_values = {'123': 301, '666': 302, '555': 303, '444': 304, '333': 305, '222': 306, '111': 307, '456': 310}
-
-    rand_values = dicerolls(3)
-    print(' '.join(rand_values))
+    # making sure the comb_values are higher than the point_values
+    rand_values = x  # no clue why orlando named it rand_values, but i just slapped a function input on it and it
+    # works kinda -hayden
+    # rand_values = sorted(input("Random set of numbers:"))  ## for testing
     dice_numbers = ''.join(rand_values)  # set of numbers as one string
     """idk why you had to make the dice rolls strings, not integers, but it works
     so im not gonna complain!"""
     list_of_values = []
     global cpu_scores, score
-
     if dice_numbers in comb_values:
         score = comb_values.get(dice_numbers)
-        player_info[current_turn][2] = score
-        ####### current_turn  to get index
     else:
         for i in rand_values:
             list_of_values.append(point_values[i])
             score = int(sum(list_of_values))
-            player_info[current_turn][2] = score
-    list_of_values.clear()
+    print(score)  ## to check if score is right
     return score
 
 
 
-dice_to_points(["1", "1", "1"])
+# dice_to_points(["1", "1", "1"])
 # i'd assume that we're going to make score append/set a dictionary to keep track of
 # each player/cpu's scores - hayden
 
@@ -193,6 +198,9 @@ def chip_tally():
     global stone_count
     global cpu_scores
     global first_tally
+    global highest_score
+    global lowest_score
+    global losing
     if first_tally:
         stone_count = [chips] * len(p1dice)
         first_tally = False
@@ -214,6 +222,8 @@ def chip_tally():
         cpu_list.sort()
         sorted_players = cpu_list
         lowest_score = cpu_list.index(sorted_players[0])
+        highest_score = cpu_list.index(sorted_players[-1])
+        losing = 1
         stone_count[lowest_score] += 1
         for x in range(len(cpu_list)):
             if x != lowest_score:
@@ -226,6 +236,8 @@ def chip_tally():
         cpu_list.sort()
         sorted_players = cpu_list
         lowest_score = cpu_list.index(sorted_players[0])
+        highest_score = cpu_list.index(sorted_players[-1])
+        losing = 2
         stone_count[lowest_score] += 2
         for x in range(len(cpu_list)):
             if x != lowest_score:
@@ -238,6 +250,8 @@ def chip_tally():
         cpu_list.sort()
         sorted_players = cpu_list
         lowest_score = cpu_list.index(sorted_players[0])
+        highest_score = cpu_list.index(sorted_players[-1])
+        losing = 3
         stone_count[lowest_score] += 3
         for x in range(len(cpu_list)):
             if x != lowest_score:
@@ -249,6 +263,8 @@ def chip_tally():
         cpu_list.sort()
         sorted_players = cpu_list
         lowest_score = cpu_list.index(sorted_players[0])
+        highest_score = cpu_list.index(sorted_players[-1])
+        losing = 4
         stone_count[lowest_score] += 4
         for x in range(len(cpu_list)):
             if x != lowest_score:
@@ -1332,7 +1348,7 @@ while True:  # literally just makes it an infinite loop
                             p1dice[0].append(pdice[1])
                             p1dice[0].append(pdice[2])
                             print(p1dice)
-                        if keyf == 'f':
+                        if keyf == 'f' and rolls <= 2:
                             rolls += 1
                             f.clear()
                             waiting = False
@@ -1362,7 +1378,7 @@ while True:  # literally just makes it an infinite loop
                 #f.write(('Player x had the highest score (', p1dice[max]') pwhile player y had the lowest(', p1dice[min]')'), align='center', font=(
                 #'arial', 12, 'normal'))  # add the player names or numbers in here (whichever is easier)
                 f.setpos(0, 200)
-                f.write('All players give x chips to player y', align='center', font=('arial', 12, 'normal'))
+                f.write('All players give {} chip(s) to player {}' .format(losing, lowest_score + 1), align='center', font=('arial', 12, 'normal'))
                 f.setpos((-25 * numplayers), -150)
                 f.color('black')
                 f.setpos((-32 * numplayers) + 10, -110)
@@ -1406,7 +1422,7 @@ while True:  # literally just makes it an infinite loop
                 for i in range(numplayers):  # I would recommend to use a list with the chip values
                     # to show the scores in game, as you could just edit chips below
                     # to be chips[i]
-                    f.write(chips, align='left', font=('arial', 30, 'normal'))
+                    f.write(stone_count[i], align='left', font=('arial', 30, 'normal'))
                     f.fd(50)
                 f.setpos((-25 * numplayers), -115)
                 num = 1
@@ -1429,7 +1445,8 @@ while True:  # literally just makes it an infinite loop
                         gameing_setup2 = True
                         rest_of_turn = False
                         current_key = ""
-                        cpu_list = []
+                        cpu_scores = []
+                        p1dice = [[]]
                     else:
                         pass
                 pass
@@ -1708,7 +1725,7 @@ while True:  # literally just makes it an infinite loop
                             p1dice[0].append(pdice[1])
                             p1dice[0].append(pdice[2])
                             print(p1dice)
-                        if keyf == 'f':
+                        if keyf == 'f' and rolls <= 2:
                             rolls += 1
                             f.clear()
                             waiting = False
@@ -1749,7 +1766,7 @@ while True:  # literally just makes it an infinite loop
                     #f.write(('Player x had the highest score (', p1dice[max]') pwhile player y had the lowest(', p1dice[min]')'), align='center', font=(
                     #'arial', 12, 'normal'))  # add the player names or numbers in here (whichever is easier)
                     f.setpos(0, 200)
-                    f.write('All players give x chips to player y', align='center', font=('arial', 12, 'normal'))
+                    f.write('All players give {} chip(s) to player {}' .format(losing, lowest_score + 1), align='center', font=('arial', 12, 'normal'))
                     f.setpos((-25 * numplayers), -150)
                     f.color('black')
                     f.setpos((-32 * numplayers) + 10, -110)
@@ -1815,8 +1832,10 @@ while True:  # literally just makes it an infinite loop
                             gameing2 = True
                             gameing_setup2 = True
                             rest_of_turn = False
+                            rest_of_turn2 = False
                             current_key = ""
-                            cpu_list = []
+                            cpu_scores = []
+                            p1dice = [[]]
                         else:
                             pass
                     pass
@@ -1970,7 +1989,7 @@ while True:  # literally just makes it an infinite loop
         for i in range(len(stone_count)):
             if stone_count[i] <= 0:
                 player = (i + 1)
-        t.write(f'Player {player}n wins!', align='center', font=('arial', 40, 'normal'))
+        t.write(f'Player {player} wins!', align='center', font=('arial', 40, 'normal'))
 
 # this code is used to display whoever wins
 
