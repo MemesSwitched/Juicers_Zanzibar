@@ -1326,7 +1326,6 @@ while True:  # literally just makes it an infinite loop
                     print("p{}dice is {}".format(x, p1dice[x - 1]))
                     print(p1dice)  # the nested list of each players dice rolls, shove into tally
                 roll = 1  # resets the current roll counter for the next round if needed
-                chip_tally()
                 f.speed(0)
                 f.clear()
                 f.ht()
