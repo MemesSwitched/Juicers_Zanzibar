@@ -197,6 +197,7 @@ def chip_tally():
     global stone_count
     global cpu_scores
     stone_count = [chips] * len(cpu_scores)
+    print(stone_count)
     for i in range(numplayers):
         val = p1dice[i]
         val = ''.join(val)
@@ -205,7 +206,7 @@ def chip_tally():
     # in a list 'cpu_scores' and is respected with stone_count
     # references values in dictionary from other file 'point_values'
     # and 'comb_values'
-
+    print('its', stone_count)
     if 1 < max(cpu_scores) <= 260:
         stone_count[cpu_scores.index(min(cpu_scores))] = stone_count[cpu_scores.index(min(cpu_scores))] + (
                 1 * (len(cpu_list) - 1)) + 1
@@ -1140,7 +1141,7 @@ while True:  # literally just makes it an infinite loop
             gameing = True
             gameing_setup = True
             check += 1
-            cpu_list = make_big_list()  # Richard: Since names were entered before, this should work.
+            #cpu_list = make_big_list()  # Richard: Since names were entered before, this should work.
             enter_chips(chips)
             print(biglist)
             mouse(0, 0)
