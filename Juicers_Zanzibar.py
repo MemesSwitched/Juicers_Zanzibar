@@ -22,6 +22,8 @@ from pynput import keyboard
 ph = "Placeholder, yeah!"  # used generally for unfinished results in functions
 winner = []  # used in tiebreaker
 debugging = True  # change this to enable some wacky print statements and such
+p1dice = [[]]
+end_round = False
 ###
 """"keyboard input related global variables"""
 key_pressed = set()  # the current key being pressed down, globally as a truly blank variable
@@ -1270,6 +1272,7 @@ while True:  # literally just makes it an infinite loop
                         five()
                     elif keyf[2] == '6':
                         six()
+                    pdice = keyf
                     f.setpos(0, 62)
                     f.write('press n to keep roll or f to roll again', align='center', font=('arial', 12, 'normal'))
                     # ^^^ replace this with whichever keyboard input will be used to continue
@@ -1286,6 +1289,10 @@ while True:  # literally just makes it an infinite loop
                             rest_of_turn = True
                             rolls = 1
                             player += 1
+                            p1dice[0].append(pdice[0])
+                            p1dice[0].append(pdice[1])
+                            p1dice[0].append(pdice[2])
+                            print(p1dice)
                         if keyf == 'f':
                             rolls += 1
                             f.clear()
@@ -1303,7 +1310,10 @@ while True:  # literally just makes it an infinite loop
             # as soon as player starts the game
             name = 'Player '
             name += str(player)
-            if player > numplayers:
+            if end_round:
+                for x in range (1, (1 + player)):
+                    print("p{}dice is {}" .format(x, p1dice[x - 1]))
+                    print(p1dice)
                 pass
                 # go to end of round
             f.setpos(0, 225)
@@ -1415,6 +1425,7 @@ while True:  # literally just makes it an infinite loop
                         five()
                     elif keyf[2] == '6':
                         six()
+                    pdice = keyf
                     f.setpos(0, 62)
                     f.write('press n to keep roll or f to roll again', align='center', font=('arial', 12, 'normal'))
                     # ^^^ replace this with whichever keyboard input will be used to continue
@@ -1431,7 +1442,11 @@ while True:  # literally just makes it an infinite loop
                             # gameing_setup = False  # this will make it exit the round 1 turn 1 loop.
                             # rest_of_turn = True
                             rolls = 1
-                            player += 1
+                            p1dice.append(pdice)
+                            if player < numplayers:
+                                player += 1
+                            else:
+                                end_round = True
                         if keyf == 'f' and rolls <= (max_rolls - 1):
                             rolls += 1
                             f.clear()
