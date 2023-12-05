@@ -189,6 +189,7 @@ stone_count = []
 
 
 def chip_tally():
+    print('ANYBODY')
     if len(cpu_list) < 2:
         print("No friends")
     else:
@@ -1318,6 +1319,7 @@ while True:  # literally just makes it an infinite loop
             # as soon as player starts the game
             name = 'Player '
             name += str(player)
+            chip_tally()
             if end_round:
                 for x in range(1, (1 + player)):  # yeah its gameing time
                     print("p{}dice is {}".format(x, p1dice[x - 1]))
