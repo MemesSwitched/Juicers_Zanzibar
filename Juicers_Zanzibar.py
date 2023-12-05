@@ -1385,6 +1385,10 @@ while True:  # literally just makes it an infinite loop
                         f.write((i + 1), align='left', font=('arial', 30, 'normal'))
                         f.fd(50)
                         num += 1
+                    keyf = current_key
+                    if keyf == 'enter':
+                        f.clear()
+                        end_round = False
                 pass
                 # go to end of round
             else:
